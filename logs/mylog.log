@@ -1,0 +1,169 @@
+[INFO][2019-01-20 13:31:24,113][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:31:25,943][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:31:27,165][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:31:28,358][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:31:29,553][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:31:30,810][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:31:31,961][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:42:36,959][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:42:37,688][com.yy.language.LanguageDistinguish]所用纳秒时间：344717114，共：343毫秒
+[INFO][2019-01-20 13:47:39,358][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:47:39,826][com.yy.language.LanguageDistinguish]所用纳秒时间：356589063，共：359毫秒
+[INFO][2019-01-20 13:49:06,801][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:49:07,536][com.yy.language.LanguageDistinguish]所用纳秒时间：343237530，共：344毫秒
+[INFO][2019-01-20 13:49:07,551][com.yy.language.LanguageDistinguish]{"result":[[["香港苹果日报\n","蘋果動新聞 HK Apple Daily\n",null,null,3],["99,000次观看\n","조회수 99만회\n",null,null,3],["6天前","6일 전",null,null,3],[null,null,"Xiānggǎng píngguǒ rìbào\n99,000 cì guānkàn\n6 tiān qián","bingwadongsinmun HK Apple Daily\njohoesu 99manhoe\n6il jeon"]],null,"ko",null,null,[["蘋果動新聞 HK Apple Daily",null,[["香港苹果日报",0,true,false],["苹果动新闻HK苹果日报",0,true,false]],[[0,20]],"蘋果動新聞 HK Apple Daily",0,0],["\n",null,null,[[0,1]],"\n",0,0],["조회수 99만회",null,[["99,000次观看",0,true,false],["检索99次",0,true,false]],[[0,8]],"조회수 99만회",0,0],["\n",null,null,[[0,1]],"\n",0,0],["6일 전",null,[["6天前",0,true,false],["5天前",0,true,false]],[[0,4]],"6일 전",0,0]],1,null,[["ko"],null,[1],["ko"]]]}
+[INFO][2019-01-20 13:49:08,663][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:49:08,788][com.yy.language.LanguageDistinguish]所用纳秒时间：47026767，共：47毫秒
+[INFO][2019-01-20 13:49:08,788][com.yy.language.LanguageDistinguish]{"result":[[["发布于2018年10月4日\n","2018/10/04 に公開\n",null,null,3],["类别\n","カテゴリ\n",null,null,0],["娱乐","エンターテイメント",null,null,0],[null,null,"Fābù yú 2018 nián 10 yuè 4 rì\nlèibié\nyúlè","2018/ 10/ 04 Ni kōkai kategori entāteimento"]],null,"ja",null,null,[["2018/10/04 に公開",null,[["发布于2018年10月4日",0,true,false]],[[0,14]],"2018/10/04 に公開",0,0],["\n",null,null,[[0,1]],"\n",0,0],["カテゴリ",null,[["类别",896,false,false],["类",103,false,false],["目录",0,false,false],["分类",0,false,false],["种类",0,false,false]],[[0,4]],"カテゴリ",0,1],["\n",null,null,[[0,1]],"\n",0,0],["エンターテイメント",null,[["娱乐",1000,false,false],["娱乐休闲",0,false,false],["娱乐活动",0,false,false],["招待",0,false,false],["娱乐场所",0,false,false]],[[0,9]],"エンターテイメント",0,1]],1,null,[["ja"],null,[1],["ja"]]]}
+[INFO][2019-01-20 13:49:09,897][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:49:09,991][com.yy.language.LanguageDistinguish]所用纳秒时间：42181558，共：31毫秒
+[INFO][2019-01-20 13:49:09,991][com.yy.language.LanguageDistinguish]{"result":[[["两位香港最劲中路花轮+Toyz终于双排啦！\n","兩位香港最勁中路花輪+Toyz終於雙排啦！\n",null,null,0],["全场广东话精华！","全場廣東話精華！",null,null,0],[null,null,"Liǎng wèi xiānggǎng zuì jìn zhōnglù huā lún +Toyz zhōngyú shuāng pái la!\nQuán chǎng guǎngdōng huà jīnghuá!","Liǎng wèi xiānggǎng zuì jìn zhōnglù huālún +Toyz zhōngyú shuāng pái la!\nQuán chǎng guǎngdōng huà jīnghuá!"]],null,"zh-CN",null,null,[["\n",null,null,[[0,1]],"\n",0,0]],1,null,[["zh-CN"],null,[1],["zh-TW"]]]}
+[INFO][2019-01-20 13:49:11,100][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:49:11,256][com.yy.language.LanguageDistinguish]所用纳秒时间：37703608，共：46毫秒
+[INFO][2019-01-20 13:49:11,256][com.yy.language.LanguageDistinguish]{"result":[[["两位香港最劲中路花轮+Toyz终于双排啦！\n","兩位香港最勁中路花輪+Toyz終於雙排啦！\n",null,null,0],["全场广东话精华！","全場廣東話精華！",null,null,0],[null,null,"Liǎng wèi xiānggǎng zuì jìn zhōnglù huā lún +Toyz zhōngyú shuāng pái la!\nQuán chǎng guǎngdōng huà jīnghuá!","Liǎng wèi xiānggǎng zuì jìn zhōnglù huālún +Toyz zhōngyú shuāng pái la!\nQuán chǎng guǎngdōng huà jīnghuá!"]],null,"zh-CN",null,null,[["\n",null,null,[[0,1]],"\n",0,0]],1,null,[["zh-CN"],null,[1],["zh-TW"]]]}
+[INFO][2019-01-20 13:49:12,366][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:49:12,475][com.yy.language.LanguageDistinguish]所用纳秒时间：55799640，共：47毫秒
+[INFO][2019-01-20 13:49:12,475][com.yy.language.LanguageDistinguish]{"result":[[["现代中文的一种标准化写法，与繁体中文（又称正体中文）相对。简体中文主要由传承","现代中文的一种标准化写法，与繁体中文（又称正体中文）相对。简体中文主要由传承",null,null,0],[null,null,"Xiàndài zhōngwén de yī zhǒng biāozhǔnhuà xiěfǎ, yǔ fántǐ zhōngwén (yòu chēng zhèngtǐ zhōngwén) xiāngduì. Jiǎntǐ zhōngwén zhǔyào yóu chuánchéng","Xiàndài zhōngwén de yī zhǒng biāozhǔnhuà xiěfǎ, yǔ fántǐ zhōngwén (yòu chēng zhèngtǐ zhōngwén) xiāngduì. Jiǎntǐ zhōngwén zhǔyào yóu chuánchéng"]],null,"zh-CN",null,null,null,1,null,[["zh-CN"],null,[1],["zh-CN"]]]}
+[INFO][2019-01-20 13:49:13,577][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:49:13,671][com.yy.language.LanguageDistinguish]所用纳秒时间：37386405，共：47毫秒
+[INFO][2019-01-20 13:49:13,671][com.yy.language.LanguageDistinguish]{"result":[[["土地销售团队被送往金边市法院","ក្រុមលក់ដីខ្យល់ត្រូវបានចាប់បញ្ជូនមកដល់សាលាដំបូងរាជធានីភ្នំពេញហើយ",null,null,3],[null,null,"Tǔdì xiāoshòu tuánduì bèi sòng wǎng jīnbiān shì fǎyuàn","krom lk dei khyal trauv ban chab banhchoun mokadl saladambaung reachtheani phnompenh haey"]],null,"km",null,null,[["ក្រុមលក់ដីខ្យល់ត្រូវបានចាប់បញ្ជូនមកដល់សាលាដំបូងរាជធានីភ្នំពេញហើយ",null,[["土地销售团队被送往金边市法院",0,true,false],["空气的出售被传递到法院和",0,true,false]],[[0,64]],"ក្រុមលក់ដីខ្យល់ត្រូវបានចាប់បញ្ជូនមកដល់សាលាដំបូងរាជធានីភ្នំពេញហើយ",0,0]],1,null,[["km"],null,[1],["km"]]]}
+[INFO][2019-01-20 13:49:14,780][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:49:14,889][com.yy.language.LanguageDistinguish]所用纳秒时间：37045379，共：31毫秒
+[INFO][2019-01-20 13:49:14,889][com.yy.language.LanguageDistinguish]{"result":[[["该指数堪称全国中英文变种菜刀","နိုင်ငံကို ခေါ်ဝေါ် ညွှန်းဆိုတဲ့ အင်္ဂလိပ် မြန်မာ မူကွဲနှစ်မျိုးစလုံးမှာ ရှေး ဓားမဦးချ အ",null,null,0],[null,null,"Gāi zhǐshù kān chēng quánguó zhōng yīngwén biàn zhòng càidāo","ninenganko hkawwaw  nywhaannsotae aaingaliut myanmar  muukwal nhaitmyoehcalonemhar shayy  dharrm uhkya  a"]],null,"my",null,null,[["နိုင်ငံကို",null,[["该指数",789,false,false],["指数",6,false,false],["的索引",0,false,false],["指数中",0,false,false],["索引",0,false,false]],[[0,10]],"နိုင်ငံကို ခေါ်ဝေါ် ညွှန်းဆိုတဲ့ အင်္ဂလိပ် မြန်မာ မူကွဲနှစ်မျိုးစလုံးမှာ ရှေး ဓားမဦးချ အ",0,2],["ခေါ်ဝေါ် ညွှန်း ညွှန်း",null,[["堪称全国",389,false,false]],[[11,26]],null,2,4],["အင်္ဂလိပ် မူကွဲ နှစ်မျိုးစလုံး",null,[["中英文",386,false,false],["的中英文",34,false,false],["以英语",0,false,false],["在英语",0,false,false]],[[33,42],[50,69]],null,4,6],["နှစ်မျိုးစလုံး",null,[["变种",335,false,false],["变型",54,false,false],["变异",46,false,false],["变体",36,false,false],["变型中",0,false,false]],[[55,69]],null,6,7],["ဓားမ",null,[["菜刀",387,false,false],["直升机",98,false,false],["斩波",50,false,false],["切碎机",0,false,false],["斩波器",0,false,false]],[[78,82]],null,7,8]],1,null,[["my"],null,[1],["my"]]]}
+[INFO][2019-01-20 13:51:20,671][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:51:21,171][com.yy.language.LanguageDistinguish]所用纳秒时间：374475233，共：375毫秒
+[INFO][2019-01-20 13:51:21,186][com.yy.language.LanguageDistinguish]{"result":[[["香港苹果日报\n","蘋果動新聞 HK Apple Daily\n",null,null,3],["99,000次观看\n","조회수 99만회\n",null,null,3],["6天前","6일 전",null,null,3],[null,null,"Xiānggǎng píngguǒ rìbào\n99,000 cì guānkàn\n6 tiān qián","bingwadongsinmun HK Apple Daily\njohoesu 99manhoe\n6il jeon"]],null,"ko",null,null,[["蘋果動新聞 HK Apple Daily",null,[["香港苹果日报",0,true,false],["苹果动新闻HK苹果日报",0,true,false]],[[0,20]],"蘋果動新聞 HK Apple Daily",0,0],["\n",null,null,[[0,1]],"\n",0,0],["조회수 99만회",null,[["99,000次观看",0,true,false],["检索99次",0,true,false]],[[0,8]],"조회수 99만회",0,0],["\n",null,null,[[0,1]],"\n",0,0],["6일 전",null,[["6天前",0,true,false],["5天前",0,true,false]],[[0,4]],"6일 전",0,0]],1,null,[["ko"],null,[1],["ko"]]]}
+[INFO][2019-01-20 13:51:36,545][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:51:36,998][com.yy.language.LanguageDistinguish]所用纳秒时间：352927040，共：359毫秒
+[INFO][2019-01-20 13:51:38,103][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:51:38,541][com.yy.language.LanguageDistinguish]所用纳秒时间：37005578，共：47毫秒
+[INFO][2019-01-20 13:51:39,643][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:51:39,722][com.yy.language.LanguageDistinguish]所用纳秒时间：39664125，共：47毫秒
+[INFO][2019-01-20 13:51:40,831][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:51:40,940][com.yy.language.LanguageDistinguish]所用纳秒时间：49360269，共：47毫秒
+[INFO][2019-01-20 13:51:42,050][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:51:42,128][com.yy.language.LanguageDistinguish]所用纳秒时间：41191953，共：31毫秒
+[INFO][2019-01-20 13:51:43,241][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:51:43,320][com.yy.language.LanguageDistinguish]所用纳秒时间：46626040，共：47毫秒
+[INFO][2019-01-20 13:51:44,422][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:51:44,547][com.yy.language.LanguageDistinguish]所用纳秒时间：39540500，共：47毫秒
+[INFO][2019-01-20 13:54:38,649][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:54:39,133][com.yy.language.LanguageDistinguish]所用纳秒时间：381029184，共：375毫秒
+[INFO][2019-01-20 13:54:39,165][com.yy.language.LanguageDistinguish]数组
+[INFO][2019-01-20 13:54:39,165][com.yy.language.LanguageDistinguish][["香港苹果日报\n","蘋果動新聞 HK Apple Daily\n",null,null,3],["99,000次观看\n","조회수 99만회\n",null,null,3],["6天前","6일 전",null,null,3],[null,null,"Xiānggǎng píngguǒ rìbào\n99,000 cì guānkàn\n6 tiān qián","bingwadongsinmun HK Apple Daily\njohoesu 99manhoe\n6il jeon"]]
+[INFO][2019-01-20 13:54:39,165][com.yy.language.LanguageDistinguish]null
+[INFO][2019-01-20 13:54:39,165][com.yy.language.LanguageDistinguish]ko
+[INFO][2019-01-20 13:54:39,165][com.yy.language.LanguageDistinguish]null
+[INFO][2019-01-20 13:54:39,165][com.yy.language.LanguageDistinguish]null
+[INFO][2019-01-20 13:54:39,165][com.yy.language.LanguageDistinguish][["蘋果動新聞 HK Apple Daily",null,[["香港苹果日报",0,true,false],["苹果动新闻HK苹果日报",0,true,false]],[[0,20]],"蘋果動新聞 HK Apple Daily",0,0],["\n",null,null,[[0,1]],"\n",0,0],["조회수 99만회",null,[["99,000次观看",0,true,false],["检索99次",0,true,false]],[[0,8]],"조회수 99만회",0,0],["\n",null,null,[[0,1]],"\n",0,0],["6일 전",null,[["6天前",0,true,false],["5天前",0,true,false]],[[0,4]],"6일 전",0,0]]
+[INFO][2019-01-20 13:54:39,165][com.yy.language.LanguageDistinguish]1
+[INFO][2019-01-20 13:54:39,165][com.yy.language.LanguageDistinguish]null
+[INFO][2019-01-20 13:54:39,165][com.yy.language.LanguageDistinguish][["ko"],null,[1],["ko"]]
+[INFO][2019-01-20 13:54:40,274][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:54:40,352][com.yy.language.LanguageDistinguish]所用纳秒时间：39781720，共：47毫秒
+[INFO][2019-01-20 13:54:40,352][com.yy.language.LanguageDistinguish]数组
+[INFO][2019-01-20 13:54:40,352][com.yy.language.LanguageDistinguish][["发布于2018年10月4日\n","2018/10/04 に公開\n",null,null,3],["类别\n","カテゴリ\n",null,null,0],["娱乐","エンターテイメント",null,null,0],[null,null,"Fābù yú 2018 nián 10 yuè 4 rì\nlèibié\nyúlè","2018/ 10/ 04 Ni kōkai kategori entāteimento"]]
+[INFO][2019-01-20 13:54:40,352][com.yy.language.LanguageDistinguish]null
+[INFO][2019-01-20 13:54:40,352][com.yy.language.LanguageDistinguish]ja
+[INFO][2019-01-20 13:54:40,352][com.yy.language.LanguageDistinguish]null
+[INFO][2019-01-20 13:54:40,352][com.yy.language.LanguageDistinguish]null
+[INFO][2019-01-20 13:54:40,352][com.yy.language.LanguageDistinguish][["2018/10/04 に公開",null,[["发布于2018年10月4日",0,true,false]],[[0,14]],"2018/10/04 に公開",0,0],["\n",null,null,[[0,1]],"\n",0,0],["カテゴリ",null,[["类别",896,false,false],["类",103,false,false],["目录",0,false,false],["分类",0,false,false],["种类",0,false,false]],[[0,4]],"カテゴリ",0,1],["\n",null,null,[[0,1]],"\n",0,0],["エンターテイメント",null,[["娱乐",1000,false,false],["娱乐休闲",0,false,false],["娱乐活动",0,false,false],["招待",0,false,false],["娱乐场所",0,false,false]],[[0,9]],"エンターテイメント",0,1]]
+[INFO][2019-01-20 13:54:40,352][com.yy.language.LanguageDistinguish]1
+[INFO][2019-01-20 13:54:40,352][com.yy.language.LanguageDistinguish]null
+[INFO][2019-01-20 13:54:40,352][com.yy.language.LanguageDistinguish][["ja"],null,[1],["ja"]]
+[INFO][2019-01-20 13:54:41,454][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:54:41,516][com.yy.language.LanguageDistinguish]所用纳秒时间：41567653，共：47毫秒
+[INFO][2019-01-20 13:54:41,516][com.yy.language.LanguageDistinguish]数组
+[INFO][2019-01-20 13:54:41,516][com.yy.language.LanguageDistinguish][["两位香港最劲中路花轮+Toyz终于双排啦！\n","兩位香港最勁中路花輪+Toyz終於雙排啦！\n",null,null,0],["全场广东话精华！","全場廣東話精華！",null,null,0],[null,null,"Liǎng wèi xiānggǎng zuì jìn zhōnglù huā lún +Toyz zhōngyú shuāng pái la!\nQuán chǎng guǎngdōng huà jīnghuá!","Liǎng wèi xiānggǎng zuì jìn zhōnglù huālún +Toyz zhōngyú shuāng pái la!\nQuán chǎng guǎngdōng huà jīnghuá!"]]
+[INFO][2019-01-20 13:54:41,516][com.yy.language.LanguageDistinguish]null
+[INFO][2019-01-20 13:54:41,516][com.yy.language.LanguageDistinguish]zh-CN
+[INFO][2019-01-20 13:54:41,516][com.yy.language.LanguageDistinguish]null
+[INFO][2019-01-20 13:54:41,516][com.yy.language.LanguageDistinguish]null
+[INFO][2019-01-20 13:54:41,516][com.yy.language.LanguageDistinguish][["\n",null,null,[[0,1]],"\n",0,0]]
+[INFO][2019-01-20 13:54:41,516][com.yy.language.LanguageDistinguish]1
+[INFO][2019-01-20 13:54:41,516][com.yy.language.LanguageDistinguish]null
+[INFO][2019-01-20 13:54:41,516][com.yy.language.LanguageDistinguish][["zh-CN"],null,[1],["zh-TW"]]
+[INFO][2019-01-20 13:54:42,617][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:54:42,664][com.yy.language.LanguageDistinguish]所用纳秒时间：36022606，共：31毫秒
+[INFO][2019-01-20 13:54:42,664][com.yy.language.LanguageDistinguish]数组
+[INFO][2019-01-20 13:54:42,664][com.yy.language.LanguageDistinguish][["两位香港最劲中路花轮+Toyz终于双排啦！\n","兩位香港最勁中路花輪+Toyz終於雙排啦！\n",null,null,0],["全场广东话精华！","全場廣東話精華！",null,null,0],[null,null,"Liǎng wèi xiānggǎng zuì jìn zhōnglù huā lún +Toyz zhōngyú shuāng pái la!\nQuán chǎng guǎngdōng huà jīnghuá!","Liǎng wèi xiānggǎng zuì jìn zhōnglù huālún +Toyz zhōngyú shuāng pái la!\nQuán chǎng guǎngdōng huà jīnghuá!"]]
+[INFO][2019-01-20 13:54:42,664][com.yy.language.LanguageDistinguish]null
+[INFO][2019-01-20 13:54:42,664][com.yy.language.LanguageDistinguish]zh-CN
+[INFO][2019-01-20 13:54:42,664][com.yy.language.LanguageDistinguish]null
+[INFO][2019-01-20 13:54:42,664][com.yy.language.LanguageDistinguish]null
+[INFO][2019-01-20 13:54:42,664][com.yy.language.LanguageDistinguish][["\n",null,null,[[0,1]],"\n",0,0]]
+[INFO][2019-01-20 13:54:42,664][com.yy.language.LanguageDistinguish]1
+[INFO][2019-01-20 13:54:42,664][com.yy.language.LanguageDistinguish]null
+[INFO][2019-01-20 13:54:42,664][com.yy.language.LanguageDistinguish][["zh-CN"],null,[1],["zh-TW"]]
+[INFO][2019-01-20 13:54:43,774][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:54:43,836][com.yy.language.LanguageDistinguish]所用纳秒时间：39292646，共：31毫秒
+[INFO][2019-01-20 13:54:43,836][com.yy.language.LanguageDistinguish]数组
+[INFO][2019-01-20 13:54:43,836][com.yy.language.LanguageDistinguish][["现代中文的一种标准化写法，与繁体中文（又称正体中文）相对。简体中文主要由传承","现代中文的一种标准化写法，与繁体中文（又称正体中文）相对。简体中文主要由传承",null,null,0],[null,null,"Xiàndài zhōngwén de yī zhǒng biāozhǔnhuà xiěfǎ, yǔ fántǐ zhōngwén (yòu chēng zhèngtǐ zhōngwén) xiāngduì. Jiǎntǐ zhōngwén zhǔyào yóu chuánchéng","Xiàndài zhōngwén de yī zhǒng biāozhǔnhuà xiěfǎ, yǔ fántǐ zhōngwén (yòu chēng zhèngtǐ zhōngwén) xiāngduì. Jiǎntǐ zhōngwén zhǔyào yóu chuánchéng"]]
+[INFO][2019-01-20 13:54:43,836][com.yy.language.LanguageDistinguish]null
+[INFO][2019-01-20 13:54:43,836][com.yy.language.LanguageDistinguish]zh-CN
+[INFO][2019-01-20 13:54:43,836][com.yy.language.LanguageDistinguish]null
+[INFO][2019-01-20 13:54:43,836][com.yy.language.LanguageDistinguish]null
+[INFO][2019-01-20 13:54:43,836][com.yy.language.LanguageDistinguish]null
+[INFO][2019-01-20 13:54:43,836][com.yy.language.LanguageDistinguish]1
+[INFO][2019-01-20 13:54:43,836][com.yy.language.LanguageDistinguish]null
+[INFO][2019-01-20 13:54:43,836][com.yy.language.LanguageDistinguish][["zh-CN"],null,[1],["zh-CN"]]
+[INFO][2019-01-20 13:54:44,945][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:54:45,363][com.yy.language.LanguageDistinguish]所用纳秒时间：34612976，共：31毫秒
+[INFO][2019-01-20 13:54:45,363][com.yy.language.LanguageDistinguish]数组
+[INFO][2019-01-20 13:54:45,363][com.yy.language.LanguageDistinguish][["土地销售团队被送往金边市法院","ក្រុមលក់ដីខ្យល់ត្រូវបានចាប់បញ្ជូនមកដល់សាលាដំបូងរាជធានីភ្នំពេញហើយ",null,null,3],[null,null,"Tǔdì xiāoshòu tuánduì bèi sòng wǎng jīnbiān shì fǎyuàn","krom lk dei khyal trauv ban chab banhchoun mokadl saladambaung reachtheani phnompenh haey"]]
+[INFO][2019-01-20 13:54:45,363][com.yy.language.LanguageDistinguish]null
+[INFO][2019-01-20 13:54:45,363][com.yy.language.LanguageDistinguish]km
+[INFO][2019-01-20 13:54:45,363][com.yy.language.LanguageDistinguish]null
+[INFO][2019-01-20 13:54:45,363][com.yy.language.LanguageDistinguish]null
+[INFO][2019-01-20 13:54:45,363][com.yy.language.LanguageDistinguish][["ក្រុមលក់ដីខ្យល់ត្រូវបានចាប់បញ្ជូនមកដល់សាលាដំបូងរាជធានីភ្នំពេញហើយ",null,[["土地销售团队被送往金边市法院",0,true,false],["空气的出售被传递到法院和",0,true,false]],[[0,64]],"ក្រុមលក់ដីខ្យល់ត្រូវបានចាប់បញ្ជូនមកដល់សាលាដំបូងរាជធានីភ្នំពេញហើយ",0,0]]
+[INFO][2019-01-20 13:54:45,363][com.yy.language.LanguageDistinguish]1
+[INFO][2019-01-20 13:54:45,363][com.yy.language.LanguageDistinguish]null
+[INFO][2019-01-20 13:54:45,363][com.yy.language.LanguageDistinguish][["km"],null,[1],["km"]]
+[INFO][2019-01-20 13:54:46,465][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:54:46,575][com.yy.language.LanguageDistinguish]所用纳秒时间：34822837，共：31毫秒
+[INFO][2019-01-20 13:54:46,575][com.yy.language.LanguageDistinguish]数组
+[INFO][2019-01-20 13:54:46,575][com.yy.language.LanguageDistinguish][["该指数堪称全国中英文变种菜刀","နိုင်ငံကို ခေါ်ဝေါ် ညွှန်းဆိုတဲ့ အင်္ဂလိပ် မြန်မာ မူကွဲနှစ်မျိုးစလုံးမှာ ရှေး ဓားမဦးချ အ",null,null,0],[null,null,"Gāi zhǐshù kān chēng quánguó zhōng yīngwén biàn zhòng càidāo","ninenganko hkawwaw  nywhaannsotae aaingaliut myanmar  muukwal nhaitmyoehcalonemhar shayy  dharrm uhkya  a"]]
+[INFO][2019-01-20 13:54:46,575][com.yy.language.LanguageDistinguish]null
+[INFO][2019-01-20 13:54:46,575][com.yy.language.LanguageDistinguish]my
+[INFO][2019-01-20 13:54:46,575][com.yy.language.LanguageDistinguish]null
+[INFO][2019-01-20 13:54:46,575][com.yy.language.LanguageDistinguish]null
+[INFO][2019-01-20 13:54:46,575][com.yy.language.LanguageDistinguish][["နိုင်ငံကို",null,[["该指数",789,false,false],["指数",6,false,false],["的索引",0,false,false],["指数中",0,false,false],["索引",0,false,false]],[[0,10]],"နိုင်ငံကို ခေါ်ဝေါ် ညွှန်းဆိုတဲ့ အင်္ဂလိပ် မြန်မာ မူကွဲနှစ်မျိုးစလုံးမှာ ရှေး ဓားမဦးချ အ",0,2],["ခေါ်ဝေါ် ညွှန်း ညွှန်း",null,[["堪称全国",389,false,false]],[[11,26]],null,2,4],["အင်္ဂလိပ် မူကွဲ နှစ်မျိုးစလုံး",null,[["中英文",386,false,false],["的中英文",34,false,false],["以英语",0,false,false],["在英语",0,false,false]],[[33,42],[50,69]],null,4,6],["နှစ်မျိုးစလုံး",null,[["变种",335,false,false],["变型",54,false,false],["变异",46,false,false],["变体",36,false,false],["变型中",0,false,false]],[[55,69]],null,6,7],["ဓားမ",null,[["菜刀",387,false,false],["直升机",98,false,false],["斩波",50,false,false],["切碎机",0,false,false],["斩波器",0,false,false]],[[78,82]],null,7,8]]
+[INFO][2019-01-20 13:54:46,575][com.yy.language.LanguageDistinguish]1
+[INFO][2019-01-20 13:54:46,575][com.yy.language.LanguageDistinguish]null
+[INFO][2019-01-20 13:54:46,575][com.yy.language.LanguageDistinguish][["my"],null,[1],["my"]]
+[INFO][2019-01-20 13:55:17,509][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:55:17,978][com.yy.language.LanguageDistinguish]所用纳秒时间：359106798，共：359毫秒
+[INFO][2019-01-20 13:55:19,097][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:55:19,503][com.yy.language.LanguageDistinguish]所用纳秒时间：37966539，共：31毫秒
+[INFO][2019-01-20 13:55:20,613][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:55:20,675][com.yy.language.LanguageDistinguish]所用纳秒时间：47169990，共：47毫秒
+[INFO][2019-01-20 13:55:21,777][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:55:21,886][com.yy.language.LanguageDistinguish]所用纳秒时间：40315721，共：31毫秒
+[INFO][2019-01-20 13:55:22,996][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:55:23,074][com.yy.language.LanguageDistinguish]所用纳秒时间：39373455，共：47毫秒
+[INFO][2019-01-20 13:55:24,183][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:55:24,246][com.yy.language.LanguageDistinguish]所用纳秒时间：41708465，共：47毫秒
+[INFO][2019-01-20 13:55:25,346][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 13:55:25,456][com.yy.language.LanguageDistinguish]所用纳秒时间：37599583，共：32毫秒
+[INFO][2019-01-20 15:12:09,863][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 15:12:10,595][com.yy.language.LanguageDistinguish]所用纳秒时间：352823315，共：344毫秒
+[INFO][2019-01-20 15:12:11,782][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 15:12:11,892][com.yy.language.LanguageDistinguish]所用纳秒时间：38059710，共：31毫秒
+[INFO][2019-01-20 15:12:12,992][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 15:12:13,211][com.yy.language.LanguageDistinguish]所用纳秒时间：43877034，共：47毫秒
+[INFO][2019-01-20 15:12:14,316][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 15:12:14,394][com.yy.language.LanguageDistinguish]所用纳秒时间：40571715，共：46毫秒
+[INFO][2019-01-20 15:12:15,504][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 15:12:15,629][com.yy.language.LanguageDistinguish]所用纳秒时间：52507890，共：47毫秒
+[INFO][2019-01-20 15:12:16,738][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 15:12:16,801][com.yy.language.LanguageDistinguish]所用纳秒时间：33796446，共：32毫秒
+[INFO][2019-01-20 15:12:17,902][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 15:12:17,980][com.yy.language.LanguageDistinguish]所用纳秒时间：36361219，共：31毫秒
+[INFO][2019-01-20 15:13:45,656][com.yy.language.LanguageDistinguish]使用了谷歌翻译
+[INFO][2019-01-20 15:13:46,410][com.yy.language.LanguageDistinguish]所用纳秒时间：361460805，共：348毫秒
+[INFO][2019-01-20 15:13:47,379][com.yy.language.LanguageDistinguish]使用了百度翻译
+[INFO][2019-01-20 15:13:48,480][com.yy.language.LanguageDistinguish]使用了百度翻译
+[INFO][2019-01-20 15:13:49,458][com.yy.language.LanguageDistinguish]使用了百度翻译
+[INFO][2019-01-20 15:13:50,427][com.yy.language.LanguageDistinguish]使用了百度翻译
+[INFO][2019-01-20 15:13:51,411][com.yy.language.LanguageDistinguish]使用了百度翻译
+[INFO][2019-01-20 15:13:52,411][com.yy.language.LanguageDistinguish]使用了百度翻译
