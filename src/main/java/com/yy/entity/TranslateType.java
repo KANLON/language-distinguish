@@ -7,7 +7,7 @@ package com.yy.entity;
  **/
 public enum TranslateType {
     /**
-     * 表达百度翻译
+     * 表示百度翻译
      **/
     BAIDU,
     /**
