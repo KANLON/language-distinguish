@@ -42,23 +42,18 @@ public class LanguageDistinguish {
             throw new IllegalArgumentException("字符串不能为空");
         }
         Integer[] unicodes = StringUtil.string2UnicodeInts(str);
-        boolean isCertain = false;
         boolean isEnglish = true;
-        String languageStr = null;
+        String languageStr;
         for (Integer unicode : unicodes) {
             languageStr = getOneLanguageByUnicode(unicode);
-            //英文判断，如果有不少于127的，则不是英文
-            if (unicode > 127) {
+            //英文判断，如果有不少于127的，则不是英文。如果已经判断不是英文了，直接跳过
+            if (isEnglish && unicode > 127) {
                 isEnglish = false;
             }
             if (languageStr != null) {
-                isCertain = true;
-                break;
+                //如果unicode值符合，直接返回
+                return languageStr;
             }
-        }
-        //如果不能判断，继续其他判断
-        if (isCertain) {
-            return languageStr;
         }
         //英文判断(这个是大概率有可能是)
         if (isEnglish) {
@@ -67,9 +62,8 @@ public class LanguageDistinguish {
         //存储当前的时间
         long currentTime = System.nanoTime();
         //一秒的纳秒值
-        int secondNanoValue = 1000_000_000;
+        int secondNanoValue = 900_000_000;
         //如果距离上一次请求大于等于1秒时间，则使用谷歌翻译，否则使用百度翻译
-        System.out.println("所用时间为：" + (currentTime - lastRequestTime));
         if ((currentTime - lastRequestTime) >= secondNanoValue) {
             languageStr = getLanguageFromGoogle(str);
         } else {

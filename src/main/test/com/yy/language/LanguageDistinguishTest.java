@@ -36,11 +36,11 @@ public class LanguageDistinguishTest {
         List<String> list = ExcelUtil.getTestStr();
         System.out.println("开始时间：" + new Date());
         long count = 0;
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println(test.getLanguageByString(list.get(i)));
-            //添加1秒停顿是因为谷歌翻译禁止短时间内高流量访问，1秒是最合理的，太少就会禁止访问
+        for (int i = 0; i < 1000_000; i++) {
+            System.out.println(i + "次，" + test.getLanguageByString(list.get(i % list.size())));
+            //添加1秒停顿以上使用谷歌翻译
             try {
-                Thread.sleep(900);
+                Thread.sleep(960);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
