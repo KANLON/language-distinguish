@@ -63,7 +63,7 @@ public class LanguageDistinguish {
         long currentTime = System.nanoTime();
         //一秒的纳秒值
         int secondNanoValue = 900_000_000;
-        //如果距离上一次请求大于等于1秒时间，则使用谷歌翻译，否则使用百度翻译
+        //如果距离上一次请求大于等于0.9秒时间，则使用谷歌翻译，否则使用百度翻译
         if ((currentTime - lastRequestTime) >= secondNanoValue) {
             languageStr = getLanguageFromGoogle(str);
         } else {
