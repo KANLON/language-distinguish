@@ -12,8 +12,8 @@ import lombok.Data;
  */
 @Data
 public class UnicodeExcelInfo extends BaseRowModel {
-    @ExcelProperty(index = 0, value = "value")
-    public int num;
+    @ExcelProperty(index = 0, value = "序号")
+    public String num;
 
     @ExcelProperty(index = 1, value = "编码范围")
     public String unicodeRange;

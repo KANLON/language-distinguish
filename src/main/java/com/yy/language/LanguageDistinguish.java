@@ -16,6 +16,8 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import java.io.FileReader;
 import java.net.URLEncoder;
+import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -29,15 +31,32 @@ public class LanguageDistinguish {
      * 存储上一次的请求的时间
      **/
     private static long lastRequestTime = 0;
-    private Logger logger = LoggerFactory.getLogger(LanguageDistinguish.class);
+    private static Logger logger = LoggerFactory.getLogger(LanguageDistinguish.class);
 
+    //测试
+    public static void main(String[] args) {
+        List<String> list = ExcelUtil.getTestStr();
+        System.out.println("开始时间：" + new Date());
+        long count = 0;
+        for (int i = 0; i < 1000_000; i++) {
+            System.out.println(i + "次，" + getLanguageByString(list.get(i % list.size())));
+            //添加1秒停顿以上使用谷歌翻译
+            try {
+                Thread.sleep(960);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("结束时间：" + new Date() + "\n次数：" + count);
+
+    }
     /**
      * 根据字符串得到该字符串的语言名称(中文)
      *
      * @param str 要判断的字符串
      * @return java.lang.String 字符串的语言名称(中文),如果不能确定，则返回null
      **/
-    public String getLanguageByString(String str) {
+    public static String getLanguageByString(String str) {
         if (str == null || str.length() <= 0) {
             throw new IllegalArgumentException("字符串不能为空");
         }
@@ -45,7 +64,7 @@ public class LanguageDistinguish {
         boolean isEnglish = true;
         String languageStr;
         for (Integer unicode : unicodes) {
-            languageStr = getOneLanguageByUnicode(unicode);
+            languageStr = getOneLanguageByUnicode(unicode, ExcelUtil.getLanguageAndUnicodeFromExcel());
             //英文判断，如果有不少于127的，则不是英文。如果已经判断不是英文了，直接跳过
             if (isEnglish && unicode > 127) {
                 isEnglish = false;
@@ -79,7 +98,7 @@ public class LanguageDistinguish {
      * @param str 要识别的字符串
      * @return java.lang.String 返回识别得到的语言，如果识别不了返回null
      **/
-    private String getLanguageFromGoogle(String str) {
+    private static String getLanguageFromGoogle(String str) {
         logger.info("使用了谷歌翻译");
         String responseStr = null;
         String url = "https://translate.google.com/translate_a/single";
@@ -110,7 +129,7 @@ public class LanguageDistinguish {
      * @param str 要识别的字符串
      * @return java.lang.String 返回识别得到的语言，如果识别不了返回null
      **/
-    private String getLanguageFromBaidu(String str) {
+    private static String getLanguageFromBaidu(String str) {
         logger.info("使用了百度翻译");
         String language = null;
         TransApi api = new TransApi(PropUtil.INSTANCE.getStringByKey("APP_ID"), PropUtil.INSTANCE.getStringByKey("SECURITY_KEY"));
@@ -143,19 +162,31 @@ public class LanguageDistinguish {
     }
 
     /**
+     * 根据字符判断是不是特殊字符
+     *
+     * @param c 要判断的字符
+     * @return java.lang.Boolean
+     **/
+    public static Boolean isSpecialLanguage(Character c) {
+
+
+        return getOneLanguageByUnicode(c, ExcelUtil.getSpecialLanguageAndUnicodeFromFromExcel()) != null;
+    }
+
+    /**
      * 根据某个unicode值判断属于哪个特定的语言，如果符合多个语言，则返回null
      *
      * @param unicode 要判断的unicode值
+     * @param languageTypeMap 语言类别的map，是识别特定语言还是特殊语言
      * @return java.lang.String 不能判断，则返回null
      **/
-    private String getOneLanguageByUnicode(int unicode) {
+    public static String getOneLanguageByUnicode(int unicode, Map<String, Object> languageTypeMap) {
         final int maxUnicode = 0xFFFF;
         if (unicode < 0 || unicode > maxUnicode) {
             throw new IllegalArgumentException("非正常识别的unicode整数，当前只能识别第一平面的");
         }
-        Map<String, Object> map = ExcelUtil.getLanguageAndUnicodeFromExcel();
-        int[] unicodes = (int[]) map.get(ExcelUtil.UNICODES_KEY);
-        String[] language = (String[]) map.get(ExcelUtil.LANGUAGES_KEY);
+        int[] unicodes = (int[]) languageTypeMap.get(ExcelUtil.UNICODES_KEY);
+        String[] language = (String[]) languageTypeMap.get(ExcelUtil.LANGUAGES_KEY);
         //从区间数组中找到不大于且最接近该unicode数的下标
         int index = findIndexFromUnicodes(unicodes, unicode);
         //如果等于-1，则表示当前还不确定是那种语言
@@ -171,11 +202,11 @@ public class LanguageDistinguish {
      * @param unicode 要查找的unicode值
      * @return int 返回下标值,找不到则返回-1
      **/
-    private int findIndexFromUnicodes(int[] unicodesRange, int unicode) {
+    private static int findIndexFromUnicodes(int[] unicodesRange, int unicode) {
         if (unicodesRange == null || unicodesRange.length <= 1) {
             return -1;
         }
-        //二分查找
+        //类二分查找
         int start = 0;
         int end = unicodesRange.length - 1;
         int midIndex;
@@ -218,11 +249,11 @@ public class LanguageDistinguish {
      * @param text 要识别的字符串
      * @return java.lang.String 返回tk值
      **/
-    private String token(String text) {
+    private static String token(String text) {
         String tk = "";
         ScriptEngine engine = new ScriptEngineManager().getEngineByName("js");
         try {
-            FileReader reader = new FileReader(this.getClass().getClassLoader().getResource("./Google.js").getFile());
+            FileReader reader = new FileReader(LanguageDistinguish.class.getClassLoader().getResource("./Google.js").getFile());
             engine.eval(reader);
             if (engine instanceof Invocable) {
                 Invocable invoke = (Invocable) engine;
