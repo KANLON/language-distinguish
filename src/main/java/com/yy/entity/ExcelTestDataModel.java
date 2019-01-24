@@ -16,15 +16,18 @@ public class ExcelTestDataModel extends BaseRowModel {
     private Integer num;
 
     @ExcelProperty(value = "iD", index = 1)
-    private String id;
+    private String id = "";
 
     @ExcelProperty(value = "标题", index = 2)
-    private String title;
+    private String title = "";
 
     @ExcelProperty(value = "描述", index = 3)
-    private String description;
+    private String description = "";
 
     @ExcelProperty(value = "标签", index = 4)
-    private String tag;
+    private String tags = "";
+
+    @ExcelProperty(value = "语言", index = 5)
+    private String language = "";
 
 }

@@ -14,6 +14,13 @@
             <artifactId>easyexcel</artifactId>
             <version>1.1.2-beat1</version>
         </dependency>
+        <!-- 开源的语言识别的库-->
+        <dependency>
+            <groupId>com.optimaize.languagedetector</groupId>
+            <artifactId>language-detector</artifactId>
+            <version>0.6</version>
+        </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

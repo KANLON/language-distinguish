@@ -4,6 +4,7 @@ import com.alibaba.excel.ExcelReader;
 import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.metadata.Sheet;
 import com.alibaba.excel.support.ExcelTypeEnum;
+import com.alibaba.excel.util.StringUtils;
 import com.yy.entity.ExcelTestDataModel;
 import com.yy.entity.TranslateType;
 import com.yy.entity.UnicodeExcelInfo;
@@ -102,9 +103,25 @@ public class ExcelUtil {
             model.setNum(++count);
             try {
                 model.setId(object.getString("id"));
-                model.setDescription(removeSpecialChar(object.getString("description")));
-                model.setTag(removeSpecialChar(object.getString("tags")));
-                model.setTitle(removeSpecialChar(object.getString("title")));
+                String tags = "";
+                String description = "";
+                String title = "";
+                if (!object.isNull("tags")) {
+                    tags = StringUtil.removeSpecialChar(object.getString("tags"));
+                }
+                if (!object.isNull("description")) {
+                    description = StringUtil.removeSpecialChar(object.getString("description"));
+                }
+                if (object.isNull("title")) {
+                    title = StringUtil.removeSpecialChar(object.getString("title"));
+                }
+                model.setDescription(description);
+                model.setTags(tags);
+                model.setTitle(title);
+                String allStr = description + title + tags;
+                if (!StringUtils.isEmpty(allStr) && !allStr.matches("\\s+")) {
+                    model.setLanguage(LanguageDistinguish.getLanguageByString(description + title + tags));
+                }
                 list.add(model);
             } catch (JSONException e) {
                 logger.error("值获取失败,次数" + (count));
@@ -195,7 +212,7 @@ public class ExcelUtil {
     /**
      * 从excel中得到语言对应的unicode数组和语言名称数组(（只会获取一次，如果已经获取过一次，则不会再获取） 从excel中得到语言对应的unicode数组和语言名称数组(（只会获取一次，如果已经获取过一次，则不会再获取）
      *
-     * @return java.util.Map<java.lang.String                                                                                                                               ,                                                                                                                               java.lang.Object>
+     * @return java.util.Map<java.lang.String                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               java.lang.Object>
      **/
     public static Map<String, Object> getLanguageAndUnicodeFromExcel() {
         if (LANGUAGE_MAP != null) {
@@ -223,7 +240,7 @@ public class ExcelUtil {
     /**
      * 从excel中得到特殊字符对应的unicode数组和语言名称数组(（只会获取一次，如果已经获取过一次，则不会再获取） 从excel中得到语言对应的unicode数组和语言名称数组(（只会获取一次，如果已经获取过一次，则不会再获取）
      *
-     * @return java.util.Map<java.lang.String                                                                                                                               ,                                                                                                                               java.lang.Object>
+     * @return java.util.Map<java.lang.String                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ,                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               java.lang.Object>
      **/
     public static Map<String, Object> getSpecialLanguageAndUnicodeFromFromExcel() {
         if (SPECIAL_LANGUAGE_MAP != null) {
@@ -250,6 +267,7 @@ public class ExcelUtil {
 
     /**
      * 读取excel得到excel的unicode和对应语言的
+     *
      * @param languageTypeFile 是得到特殊字符的，还是普通字符的
      * @return excel的信息
      */
@@ -314,37 +332,6 @@ public class ExcelUtil {
         }
         return outputStream;
     }
-
-    /**
-     * 去除字符串中的特殊字符
-     *
-     * @param str 要去除的字符串
-     * @return java.lang.String
-     **/
-    private static String removeSpecialChar(String str) {
-        if (str == null || str.length() <= 0) {
-            return null;
-        }
-        //替换字符中所有链接为空
-        String reg = "[a-zA-z]+://[^\\s]*";
-        str = str.replaceAll(reg, str);
-        //替换所有空白字符为，单一空格字符
-        str = str.replaceAll("\\s+", " ");
-
-        char[] chars = str.toCharArray();
-        for (int i = 0; i < chars.length; i++) {
-            //如果字符是属于UTF-16高半区，utf-8的编码代表是两个字符，则将其及其后面的字符设置为""
-            if (chars[i] >= 0xD800 && chars[i] <= 0xDBFF) {
-                chars[i] = ' ';
-                chars[++i] = ' ';
-            }
-            if (LanguageDistinguish.isSpecialLanguage(chars[i])) {
-                chars[i] = ' ';
-            }
-        }
-        return new String(chars);
-    }
-
 
 
 }

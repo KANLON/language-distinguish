@@ -51,58 +51,16 @@ public class ExcelUtilTest {
         }
 
         //替换字符中所有链接为空
-        String str = "I FOUND A SECRET MAP IN FORTNITE! (Creative Mode Parkour) with TBNRfrags   \n" +
-                "   SUBSCRIBE for more videos!    http://bitly.com/TBNRMY\n" +
-                "\n" +
-                " ️ FRIENDS\n" +
-                "   Kenny - http://bit.ly/2qX1krn\n" +
-                "\n" +
-                "  Be sure to check out the map/creator!\n" +
-                "   https://dropnite.com/map.php?id=80\n" +
-                "\n" +
-                "  ️ Submit your Fortnite maps here! \n" +
-                "   http://bit.ly/PrestonMaps \n" +
-                "\n" +
-                "   Join my Fan Discord! \n" +
-                "   http://discord.gg/Preston\n" +
-                "\n" +
-                "   \"FIRE\" Merchandise logo clothing line! \n" +
-                "   http://www.PrestonsStylez.com \n" +
-                "\n" +
-                "  ️ MY OTHER YOUTUBE CHANNELS!\n" +
-                "   Preston - http://youtube.com/PrestonPlayz\n" +
-                "   PrestonRoblox - http://youtube.com/PrestonRoblox\n" +
-                "   PrestonMinecraft - http://youtube.com/PrestonMinecraft\n" +
-                "   BriannaPlayz - http://bit.ly/Sub2Brianna\n" +
-                "   KeeleyPlayz - http://bit.ly/Sub2Keeley\n" +
-                "\n" +
-                "   FOLLOW ME HERE!\n" +
-                "   Instagram - https://instagram.com/realtbnrfrags\n" +
-                "   Twitter - https://twitter.com/Preston\n" +
-                "   Snapchat - https://www.snapchat.com/add/PrestoSnaps\n" +
-                "\n" +
-                "\n" +
-                "------------------------------\n" +
-                "\n" +
-                "ALL MUSIC USED IN THIS VIDEO:\n" +
-                "\n" +
-                "Intro Song\n" +
-                "Rob Gasser - Ricochet [NCS Release] \n" +
-                "Music provided by NoCopyrightSounds.\n" +
-                "Video: https://youtu.be/T4Gq9pkToS8\n" +
-                "Download: http://http://ncs.io/Ricochet\n" +
-                "\n" +
-                "Additional music provided by Epidemic Sound\n" +
-                "Click here for a free trial!    http://share.epidemicsound.com/TBNR\n" +
-                "\n" +
-                "#UseCodeTBNRFrags";
+        String str = " 블핑하우스 BLACKPINK HOUSE EP.1ㅤㅤ ㅤㅤ ㅤㅤ Online release On air SAT.PM KST YouTube, V LIVE SUN.AM KST JTBC 블핑하우스 BLACKPINK HOUSE BLACKPINK More about BLACKPINK ";
         String reg = "[a-zA-z]+://[^\\s]*";
-        str = str.replaceAll(reg, "");
+        String signReg = "[!@#\\$%\\^&\\*\\(\\)_\\+=\\{\\}\\\\\\[\\]\\?\\/\\|#:><;\\-\'\",́`~\\.]";
+        str = str.replaceAll(signReg, " ");
+        str = str.replaceAll(reg, " ");
         str = str.replaceAll("\\s+", " ");
         System.out.println("长度为：" + str.length() + "," + str);
-        str = str.replaceAll("️ ", " ");
+        str = str.replaceAll(" ", " ");
         System.out.println("再次替换：" + "长度为：" + str.length() + "," + str);
-        System.out.println(Integer.toHexString((int) '️') + "-->" + (int) ' ');
+        System.out.println(Integer.toHexString(' ') + "-->" + Integer.toHexString('ㅤ'));
     }
 
     /**

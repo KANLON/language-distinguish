@@ -1,5 +1,7 @@
 package com.yy.utils;
 
+import com.yy.language.LanguageDistinguish;
+
 /**
  * 字符串的工具类
  *
@@ -33,14 +35,55 @@ public class StringUtil {
      * @param str
      * @return java.lang.Integer[]
      **/
-    public static Integer[] string2UnicodeInts(String str) {
+    public static int[] string2UnicodeInts(String str) {
         if (str == null || str.length() <= 0) {
             return null;
         }
-        Integer[] unicodes = new Integer[str.length()];
+        int[] unicodes = new int[str.length()];
         for (int i = 0; i < str.length(); i++) {
-            unicodes[i] = (int) str.charAt(i);
+            unicodes[i] = str.charAt(i);
         }
         return unicodes;
+    }
+
+    /**
+     * 去除字符串中的特殊字符
+     *
+     * @param str 要去除的字符串
+     * @return java.lang.String
+     **/
+    public static String removeSpecialChar(String str) {
+        if (str == null || str.length() <= 0) {
+            return null;
+        }
+        //替换字符中所有链接为空
+        String reg = "[a-zA-z]+://[^\\s]*";
+        str = str.replaceAll(reg, "");
+        //替换非必要英文标点符号
+        String signReg = "[!@#\\$%\\^&\\*\\(\\)_\\+=\\{\\}\\\\\\[\\]\\?\\/\\|#:><;\\-\'\",́`~\\.[a-zA-Z]]";
+        str = str.replaceAll(signReg, " ");
+        //替换数字，前后有空白字符的则替换
+        String numReg = "(([0-9]+[\\s]+)|([\\s]+[0-9]+))";
+        str = str.replaceAll(numReg, "");
+
+        //替换所有空白字符为，单一空格字符
+        str = str.replaceAll("\\s+", " ");
+
+
+        char[] chars = str.toCharArray();
+        for (int i = 0; i < chars.length; i++) {
+            //如果字符是属于UTF-16高半区，utf-8的编码代表是两个字符，则将其及其后面的字符设置为""
+            if (chars[i] >= 0xD800 && chars[i] <= 0xDBFF) {
+                chars[i] = ' ';
+                chars[++i] = ' ';
+            }
+            if (LanguageDistinguish.isSpecialLanguage(chars[i])) {
+                chars[i] = ' ';
+            }
+        }
+        //再次替换,前后替换可以降低时间复杂度,并转为小写
+        str = new String(chars).toLowerCase();
+        str = str.replaceAll("\\s+", " ");
+        return str;
     }
 }

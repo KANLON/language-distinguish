@@ -1,11 +1,9 @@
 package com.yy.language;
 
-import com.yy.entity.TranslateType;
 import com.yy.utils.ExcelUtil;
 import com.yy.utils.HttpRequestUtil;
-import com.yy.utils.PropUtil;
+import com.yy.utils.LanguageDetectionUtil;
 import com.yy.utils.StringUtil;
-import com.yy.utils.baidu.TransApi;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
@@ -15,13 +13,15 @@ import javax.script.Invocable;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import java.io.FileReader;
+import java.math.BigDecimal;
+import java.math.MathContext;
 import java.net.URLEncoder;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 /**
- * 主要是根据输入的语言识别出是那个国家的语言(假定以utf-8编码方式输入)，其中谷歌翻译那里还没测试每月超过200万字符请求是否可以。
+ * 主要是根据输入的语言识别出是那个国家的语言(假定以utf-8编码方式输入)
  *
  * @author zhangcanlong
  * @date 2019年1月16日
@@ -40,12 +40,6 @@ public class LanguageDistinguish {
         long count = 0;
         for (int i = 0; i < 1000_000; i++) {
             System.out.println(i + "次，" + getLanguageByString(list.get(i % list.size())));
-            //添加1秒停顿以上使用谷歌翻译
-            try {
-                Thread.sleep(960);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         }
         System.out.println("结束时间：" + new Date() + "\n次数：" + count);
 
@@ -60,35 +54,63 @@ public class LanguageDistinguish {
         if (str == null || str.length() <= 0) {
             throw new IllegalArgumentException("字符串不能为空");
         }
-        Integer[] unicodes = StringUtil.string2UnicodeInts(str);
+        //去除特殊的字符
+        str = StringUtil.removeSpecialChar(str);
+        char[] unicodes = str.toCharArray();
         boolean isEnglish = true;
         String languageStr;
-        for (Integer unicode : unicodes) {
-            languageStr = getOneLanguageByUnicode(unicode, ExcelUtil.getLanguageAndUnicodeFromExcel());
+        //存放unnicode值大于127的字符，即为非字母和数字
+        StringBuilder noLetterAndNumBuilder = new StringBuilder();
+        //存放unnicode值小于等于127的字符，即为字母和数字
+        StringBuilder letterAndNumBuilder = new StringBuilder();
+        for (int i = 0; i < unicodes.length; i++) {
             //英文判断，如果有不少于127的，则不是英文。如果已经判断不是英文了，直接跳过
-            if (isEnglish && unicode > 127) {
+            if (unicodes[i] > 127) {
                 isEnglish = false;
+                noLetterAndNumBuilder.append(unicodes[i]);
+            } else {
+                letterAndNumBuilder.append(unicodes[i]);
             }
-            if (languageStr != null) {
-                //如果unicode值符合，直接返回
-                return languageStr;
-            }
+
         }
-        //英文判断(这个是大概率有可能是)
+        //存在其他形式语言
+        if (noLetterAndNumBuilder.length() > 0) {
+            languageStr = getOneLanguageByUnicode(noLetterAndNumBuilder.charAt(0), ExcelUtil.getLanguageAndUnicodeFromExcel());
+            //如果根据unicode不能直接判断语言的，继续执行开源框架和谷歌翻译进行判断
+            if (languageStr == null) {
+                languageStr = LanguageDetectionUtil.INSTANCE.detect(noLetterAndNumBuilder.toString());
+                if (languageStr == null) {
+                    languageStr = getLanguageFromGoogle(noLetterAndNumBuilder.toString());
+                }
+                if (languageStr != null) {
+                    return constructLanguageProportion(languageStr, noLetterAndNumBuilder.length(), "en", str.length() - noLetterAndNumBuilder.length());
+                }
+            }
+            //如果unicode值符合，直接返回
+            return constructLanguageProportion(languageStr, noLetterAndNumBuilder.length(), "en", str.length() - noLetterAndNumBuilder.length());
+        }
+
+        //判断，英语，法语，西班牙语
         if (isEnglish) {
-            return "英语";
+            return "en";
         }
+        //先使用开源框架识别
+        languageStr = LanguageDetectionUtil.INSTANCE.detect(str);
         //存储当前的时间
         long currentTime = System.nanoTime();
         //一秒的纳秒值
         int secondNanoValue = 900_000_000;
-        //如果距离上一次请求大于等于0.9秒时间，则使用谷歌翻译，否则使用百度翻译
-        if ((currentTime - lastRequestTime) >= secondNanoValue) {
+        //如果距离上一次请求大于等于0.9秒时间和开源框架识别不了，则使用谷歌翻译
+        if ((currentTime - lastRequestTime) >= secondNanoValue && languageStr == null) {
             languageStr = getLanguageFromGoogle(str);
-        } else {
-            languageStr = getLanguageFromBaidu(str);
         }
         lastRequestTime = System.nanoTime();
+        //如果追求准确率，则暂停1秒
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return languageStr;
     }
 
@@ -119,47 +141,13 @@ public class LanguageDistinguish {
         JSONObject jsonObject = new JSONObject("{\"result\":" + responseStr + "}");
         JSONArray array = jsonObject.getJSONArray("result");
         String languageCode = array.get(2) == null ? null : array.get(2).toString();
-        responseStr = ExcelUtil.getTranslateLanguageAndCodeFromExcel(TranslateType.GOOGLE).get(languageCode);
+        //直接返回语言的代码
+        responseStr = languageCode;
+        //返回对应语言的中文名称
+        //responseStr = ExcelUtil.getTranslateLanguageAndCodeFromExcel(TranslateType.GOOGLE).get(languageCode);
         return responseStr;
     }
 
-    /**
-     * 根据字符串调用百度翻译功能识别语言类别（每月200万字符免费，超过之后就要收费，无流量限制，识别语言少）
-     *
-     * @param str 要识别的字符串
-     * @return java.lang.String 返回识别得到的语言，如果识别不了返回null
-     **/
-    private static String getLanguageFromBaidu(String str) {
-        logger.info("使用了百度翻译");
-        String language = null;
-        TransApi api = new TransApi(PropUtil.INSTANCE.getStringByKey("APP_ID"), PropUtil.INSTANCE.getStringByKey("SECURITY_KEY"));
-        String result = api.getTransResult(str, "auto", "en");
-        JSONObject object = new JSONObject(result);
-        Map<String, Object> map = object.toMap();
-        //获取错误
-        final String languageKey = "from";
-        final String errorCodeKey = "error_code";
-        final String signErrorCode = "54001";
-        final String passwordErrorCode = "52003";
-        final String tooQuickRequestErrorCode = "54003";
-        final String tooMoreRequestErrorCode = "54004";
-        if (map.get(languageKey) == null) {
-            String errorCode = map.get(errorCodeKey).toString();
-            if (signErrorCode.equals(errorCode) || passwordErrorCode.equals(errorCode)) {
-                logger.error("签名错误,请检查app-id和密码是否填写正确," + result);
-            } else if (tooQuickRequestErrorCode.equals(errorCode)) {
-                logger.error("调用频率太高，请降低调用频率," + result);
-            } else if (tooMoreRequestErrorCode.equals(errorCode)) {
-                logger.error("免费次数已经用完，请充值," + result);
-            } else {
-                logger.error("其他原因，" + result);
-            }
-        } else {
-            String languageCode = map.get(languageKey).toString();
-            language = ExcelUtil.getTranslateLanguageAndCodeFromExcel(TranslateType.BAIDU).get(languageCode);
-        }
-        return language;
-    }
 
     /**
      * 根据字符判断是不是特殊字符
@@ -168,8 +156,6 @@ public class LanguageDistinguish {
      * @return java.lang.Boolean
      **/
     public static Boolean isSpecialLanguage(Character c) {
-
-
         return getOneLanguageByUnicode(c, ExcelUtil.getSpecialLanguageAndUnicodeFromFromExcel()) != null;
     }
 
@@ -241,6 +227,38 @@ public class LanguageDistinguish {
             }
         }
         return -1;
+    }
+
+    /**
+     * @param language1 语言1
+     * @param length1   语言1所占长度
+     * @param language2 语言2
+     * @param length2   语言2所占长度
+     * @return java.lang.String 返回  zh:0.91,ko:0.12 之类的形式，如果其中要给语言的占比小于0.01，则返回一种语言 zh:1
+     * @description 根据语言的名称及它们在字符中所占的字符长度，构造它们之间的占比
+     **/
+    private static String constructLanguageProportion(String language1, int length1, String language2, int length2) {
+        if (length1 + length2 <= 0) {
+            throw new IllegalArgumentException("总长度不能小于等于0");
+        }
+        StringBuilder returnBuilder = new StringBuilder();
+        int sumLength = length1 + length2;
+        BigDecimal proportion1 = new BigDecimal(length1 / sumLength, MathContext.DECIMAL32);
+        BigDecimal proportion2 = new BigDecimal(length2 / sumLength, MathContext.DECIMAL32);
+        BigDecimal minPrecision = new BigDecimal(0.01, MathContext.DECIMAL32);
+        if (proportion1.compareTo(minPrecision) <= 0 || proportion2.compareTo(minPrecision) <= 0) {
+            if (proportion1.compareTo(minPrecision) <= 0) {
+                returnBuilder.append(language1 + ":1.00");
+            } else {
+                returnBuilder.append(language2 + ":1.00");
+            }
+            return returnBuilder.toString();
+        }
+        returnBuilder.append(language1);
+        returnBuilder.append(":" + proportion1.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+        returnBuilder.append(language2);
+        returnBuilder.append(":" + proportion1.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+        return returnBuilder.toString();
     }
 
     /**
