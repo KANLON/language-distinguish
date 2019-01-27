@@ -56,23 +56,10 @@ public class StringUtil {
         if (str == null || str.length() <= 0) {
             return null;
         }
-        //替换字符中所有链接为空
-        String reg = "[a-zA-z]+://[^\\s]*";
-        str = str.replaceAll(reg, "");
-        //替换非必要英文标点符号
-        String signReg = "[!@#\\$%\\^&\\*\\(\\)_\\+=\\{\\}\\\\\\[\\]\\?\\/\\|#:><;\\-\'\",́`~\\.[a-zA-Z]]";
-        str = str.replaceAll(signReg, " ");
-        //替换数字，前后有空白字符的则替换
-        String numReg = "(([0-9]+[\\s]+)|([\\s]+[0-9]+))";
-        str = str.replaceAll(numReg, "");
-
-        //替换所有空白字符为，单一空格字符
-        str = str.replaceAll("\\s+", " ");
-
-
+        //替换装饰的字符
         char[] chars = str.toCharArray();
         for (int i = 0; i < chars.length; i++) {
-            //如果字符是属于UTF-16高半区，utf-8的编码代表是两个字符，则将其及其后面的字符设置为""
+            //如果字符是属于UTF-16高半区，utf-8的编码代表是两个字符，则将其及其后面的字符设置为" "
             if (chars[i] >= 0xD800 && chars[i] <= 0xDBFF) {
                 chars[i] = ' ';
                 chars[++i] = ' ';
@@ -81,8 +68,20 @@ public class StringUtil {
                 chars[i] = ' ';
             }
         }
-        //再次替换,前后替换可以降低时间复杂度,并转为小写
-        str = new String(chars).toLowerCase();
+        str = new String(chars);
+        //替换字符中所有链接为空
+        String reg = "[a-zA-z]+://[^\\s]*";
+        str = str.replaceAll(reg, "");
+        //替换所有邮箱为空
+        String emailReg = "[a-zA-z0-9]+@[^\\s]*";
+        str = str.replaceAll(emailReg, "");
+        //替换非必要英文标点符号
+        String signReg = "[!@#\\$%\\^&\\*\\(\\)_\\+=\\{\\}\\\\\\[\\]\\?\\/\\|#:><;\\-\'\",́`~\\.]";
+        str = str.replaceAll(signReg, " ");
+        //替换数字，前后有空白字符的则替换
+        String numReg = "(([0-9]+[\\s]+)|([\\s]+[0-9]+))";
+        str = str.replaceAll(numReg, "");
+        //替换所有空白字符为，单一空格字符
         str = str.replaceAll("\\s+", " ");
         return str;
     }

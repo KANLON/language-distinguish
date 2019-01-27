@@ -78,8 +78,7 @@ public class ExcelUtil {
      **/
     public final static String LANGUAGES_KEY = "languages";
 
-
-    public static void main(String[] agrs) {
+    public static void main(String[] args) {
         writeTestDataToExcel(TxtUtil.getTestJson());
     }
 
@@ -94,7 +93,6 @@ public class ExcelUtil {
         }
         OutputStream outputStream = getOutputStream(PropUtil.INSTANCE.getStringByKey("TEST_DATA_EXCEL"));
         ExcelWriter writer = new ExcelWriter(outputStream, ExcelTypeEnum.XLSX);
-        //写第一个sheet, sheet1  数据全是List<String> 无模型映射关系
         Sheet sheet1 = new Sheet(1, 0, ExcelTestDataModel.class);
         List<ExcelTestDataModel> list = new ArrayList<>();
         int count = 0;
@@ -102,7 +100,9 @@ public class ExcelUtil {
             ExcelTestDataModel model = new ExcelTestDataModel();
             model.setNum(++count);
             try {
-                model.setId(object.getString("id"));
+                String id = object.getString("id");
+                logger.info(count + ",这次识别的id为：" + id);
+                model.setId(id);
                 String tags = "";
                 String description = "";
                 String title = "";
@@ -112,7 +112,7 @@ public class ExcelUtil {
                 if (!object.isNull("description")) {
                     description = StringUtil.removeSpecialChar(object.getString("description"));
                 }
-                if (object.isNull("title")) {
+                if (!object.isNull("title")) {
                     title = StringUtil.removeSpecialChar(object.getString("title"));
                 }
                 model.setDescription(description);

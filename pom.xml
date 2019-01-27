@@ -20,6 +20,17 @@
             <artifactId>language-detector</artifactId>
             <version>0.6</version>
         </dependency>
+        <!-- 引入本地开源的shuyo语言识别库-->
+        <dependency>
+            <groupId>org.shuyo</groupId>
+            <artifactId>langdatect-core</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.shuyo</groupId>
+            <artifactId>langdatect-jsonic</artifactId>
+            <version>1.0</version>
+        </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>

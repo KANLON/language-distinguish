@@ -1,8 +1,9 @@
 package com.yy.language;
 
+import com.alibaba.excel.util.StringUtils;
 import com.yy.utils.ExcelUtil;
 import com.yy.utils.HttpRequestUtil;
-import com.yy.utils.LanguageDetectionUtil;
+import com.yy.utils.ShuyoLangDetectorUtil;
 import com.yy.utils.StringUtil;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -58,60 +59,48 @@ public class LanguageDistinguish {
         str = StringUtil.removeSpecialChar(str);
         char[] unicodes = str.toCharArray();
         boolean isEnglish = true;
-        String languageStr;
+        String languageStr = null;
         //存放unnicode值大于127的字符，即为非字母和数字
         StringBuilder noLetterAndNumBuilder = new StringBuilder();
         //存放unnicode值小于等于127的字符，即为字母和数字
         StringBuilder letterAndNumBuilder = new StringBuilder();
         for (int i = 0; i < unicodes.length; i++) {
-            //英文判断，如果有不少于127的，则不是英文。如果已经判断不是英文了，直接跳过
-            if (unicodes[i] > 127) {
+            //英文判断，如果有不少于127的，则不是英文。如果已经判断不是英文了，直接跳过。如果是空格，则上一个字符是什么则添加到哪里
+            if (unicodes[i] > 127 || (unicodes[i] == 32 && i >= 1 && unicodes[i - 1] > 127)) {
                 isEnglish = false;
                 noLetterAndNumBuilder.append(unicodes[i]);
             } else {
                 letterAndNumBuilder.append(unicodes[i]);
             }
-
         }
+
         //存在其他形式语言
         if (noLetterAndNumBuilder.length() > 0) {
             languageStr = getOneLanguageByUnicode(noLetterAndNumBuilder.charAt(0), ExcelUtil.getLanguageAndUnicodeFromExcel());
             //如果根据unicode不能直接判断语言的，继续执行开源框架和谷歌翻译进行判断
-            if (languageStr == null) {
-                languageStr = LanguageDetectionUtil.INSTANCE.detect(noLetterAndNumBuilder.toString());
-                if (languageStr == null) {
+            if (StringUtils.isEmpty(languageStr)) {
+                languageStr = ShuyoLangDetectorUtil.detect(noLetterAndNumBuilder.toString());
+                if (StringUtils.isEmpty(languageStr)) {
+                    try {
+                        long currentTime = System.nanoTime();
+                        long betweenTime = (currentTime - lastRequestTime) / 1000_000;
+                        Thread.sleep(betweenTime > 1000 ? 1000 - betweenTime : 0);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     languageStr = getLanguageFromGoogle(noLetterAndNumBuilder.toString());
+                    lastRequestTime = System.nanoTime();
                 }
-                if (languageStr != null) {
+                if (!StringUtils.isEmpty(languageStr)) {
                     return constructLanguageProportion(languageStr, noLetterAndNumBuilder.length(), "en", str.length() - noLetterAndNumBuilder.length());
                 }
             }
             //如果unicode值符合，直接返回
             return constructLanguageProportion(languageStr, noLetterAndNumBuilder.length(), "en", str.length() - noLetterAndNumBuilder.length());
+        } else {
+            //判断，英语，法语，西班牙语
+            return ShuyoLangDetectorUtil.detect(str) + ":1.00";
         }
-
-        //判断，英语，法语，西班牙语
-        if (isEnglish) {
-            return "en";
-        }
-        //先使用开源框架识别
-        languageStr = LanguageDetectionUtil.INSTANCE.detect(str);
-        //存储当前的时间
-        long currentTime = System.nanoTime();
-        //一秒的纳秒值
-        int secondNanoValue = 900_000_000;
-        //如果距离上一次请求大于等于0.9秒时间和开源框架识别不了，则使用谷歌翻译
-        if ((currentTime - lastRequestTime) >= secondNanoValue && languageStr == null) {
-            languageStr = getLanguageFromGoogle(str);
-        }
-        lastRequestTime = System.nanoTime();
-        //如果追求准确率，则暂停1秒
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return languageStr;
     }
 
     /**
@@ -140,11 +129,7 @@ public class LanguageDistinguish {
         }
         JSONObject jsonObject = new JSONObject("{\"result\":" + responseStr + "}");
         JSONArray array = jsonObject.getJSONArray("result");
-        String languageCode = array.get(2) == null ? null : array.get(2).toString();
-        //直接返回语言的代码
-        responseStr = languageCode;
-        //返回对应语言的中文名称
-        //responseStr = ExcelUtil.getTranslateLanguageAndCodeFromExcel(TranslateType.GOOGLE).get(languageCode);
+        responseStr = array.get(2) == null ? null : array.get(2).toString();
         return responseStr;
     }
 
@@ -166,7 +151,7 @@ public class LanguageDistinguish {
      * @param languageTypeMap 语言类别的map，是识别特定语言还是特殊语言
      * @return java.lang.String 不能判断，则返回null
      **/
-    public static String getOneLanguageByUnicode(int unicode, Map<String, Object> languageTypeMap) {
+    private static String getOneLanguageByUnicode(int unicode, Map<String, Object> languageTypeMap) {
         final int maxUnicode = 0xFFFF;
         if (unicode < 0 || unicode > maxUnicode) {
             throw new IllegalArgumentException("非正常识别的unicode整数，当前只能识别第一平面的");
@@ -230,34 +215,42 @@ public class LanguageDistinguish {
     }
 
     /**
+     * 根据语言的名称及它们在字符中所占的字符长度，构造它们之间
      * @param language1 语言1
      * @param length1   语言1所占长度
      * @param language2 语言2
      * @param length2   语言2所占长度
      * @return java.lang.String 返回  zh:0.91,ko:0.12 之类的形式，如果其中要给语言的占比小于0.01，则返回一种语言 zh:1
-     * @description 根据语言的名称及它们在字符中所占的字符长度，构造它们之间的占比
+     *  的占比
      **/
     private static String constructLanguageProportion(String language1, int length1, String language2, int length2) {
         if (length1 + length2 <= 0) {
             throw new IllegalArgumentException("总长度不能小于等于0");
         }
         StringBuilder returnBuilder = new StringBuilder();
-        int sumLength = length1 + length2;
+        double d1 = length1;
+        double d2 = length2;
+        double sumLength = length1 + length2;
         BigDecimal proportion1 = new BigDecimal(length1 / sumLength, MathContext.DECIMAL32);
         BigDecimal proportion2 = new BigDecimal(length2 / sumLength, MathContext.DECIMAL32);
         BigDecimal minPrecision = new BigDecimal(0.01, MathContext.DECIMAL32);
         if (proportion1.compareTo(minPrecision) <= 0 || proportion2.compareTo(minPrecision) <= 0) {
             if (proportion1.compareTo(minPrecision) <= 0) {
-                returnBuilder.append(language1 + ":1.00");
+                returnBuilder.append(language2);
             } else {
-                returnBuilder.append(language2 + ":1.00");
+                returnBuilder.append(language1);
             }
+            returnBuilder.append(":1.00");
             return returnBuilder.toString();
         }
         returnBuilder.append(language1);
-        returnBuilder.append(":" + proportion1.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+        returnBuilder.append(":");
+        returnBuilder.append(proportion1.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+        returnBuilder.append(",");
         returnBuilder.append(language2);
-        returnBuilder.append(":" + proportion1.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+        returnBuilder.append(":");
+        returnBuilder.append(proportion2.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+
         return returnBuilder.toString();
     }
 
