@@ -30,6 +30,7 @@ public class TxtUtil {
 
     /**
      * 将txt文件的每行内容转化为json对象
+     * @return json对象集合
      **/
     @Test
     public static List<JSONObject> getTestJson() {

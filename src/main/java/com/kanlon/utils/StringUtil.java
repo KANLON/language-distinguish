@@ -5,8 +5,8 @@ import com.kanlon.language.LanguageDistinguish;
 /**
  * 字符串的工具类
  *
- * @Author zhangcanlong
- * @Date 2019/1/18 10:44
+ * @author zhangcanlong
+ * @since 2019/1/18 10:44
  **/
 public class StringUtil {
     private StringUtil() {
@@ -14,6 +14,8 @@ public class StringUtil {
 
     /**
      * 字符串转换unicode
+     * @param str  要转化的字符串
+     * @return 返回转化后的unicode字符串
      */
     public static String string2Unicode(String str) {
         if (str == null || str.length() <= 0) {
@@ -32,8 +34,8 @@ public class StringUtil {
     /**
      * 根据字符串得到字符的unicode的整数数组
      *
-     * @param str
-     * @return java.lang.Integer[]
+     * @param str 要转化的字符串
+     * @return 转化后的unicode的整型数组
      **/
     public static int[] string2UnicodeInts(String str) {
         if (str == null || str.length() <= 0) {
@@ -50,7 +52,7 @@ public class StringUtil {
      * 去除字符串中的特殊字符
      *
      * @param str 要去除的字符串
-     * @return java.lang.String
+     * @return 返回去除特殊字符后的字符串
      **/
     public static String removeSpecialChar(String str) {
         if (str == null || str.length() <= 0) {
@@ -91,7 +93,7 @@ public class StringUtil {
      * 判断字符串是不是全是空白字符串或者空字符串
      *
      * @param str 要判断的字符串
-     * @return boolean true或者false
+     * @return true或者false
      **/
     public static boolean isEmptyOrWhiteSpace(String str) {
         return str == null || str.length() <= 0 || str.matches("\\s");

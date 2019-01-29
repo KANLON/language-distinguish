@@ -15,14 +15,18 @@ import java.math.MathContext;
  * 主要是根据输入的语言识别出是那个国家的语言(假定以utf-8编码方式输入)
  *
  * @author zhangcanlong
- * @date 2019年1月16日
+ * @since 2019年1月16日
  */
 public class LanguageDistinguish {
 
     private static Logger logger = LoggerFactory.getLogger(LanguageDistinguish.class);
     private static final String ENGLISH_CODE = "en";
 
-    //测试
+    /**
+     * 测试
+     *
+     * @param args 输入参数
+     **/
     public static void main(String[] args) {
 //        List<String> list = JsonUtil.getInstance().getTestStr();
 //        System.out.println("开始时间：" + new Date());
@@ -40,6 +44,7 @@ public class LanguageDistinguish {
      * 根据字符串得到该字符串的语言代码
      *
      * @param str 要判断的字符串
+     * @param mode 判断模式，精确还是模糊
      * @return java.lang.String 字符串的语言代码,如果不能确定，则返回null
      **/
     public static String getLanguageByString(String str, DetectMode mode) {
@@ -154,7 +159,7 @@ public class LanguageDistinguish {
 
     /**
      * 从区间数组（有序）中找到不大于且最接近该unicode数的下标
-     *
+     * @param unicodesRange 要查找的unicode范围
      * @param unicode 要查找的unicode值
      * @return int 返回下标值,找不到则返回-1
      **/

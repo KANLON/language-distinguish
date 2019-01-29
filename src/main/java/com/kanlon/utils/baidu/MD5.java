@@ -11,7 +11,9 @@ import java.security.NoSuchAlgorithmException;
  * @since 2019-1-19 16:42
  **/
 public class MD5 {
-    // 首先初始化一个字符数组，用来存放每个16进制字符
+    /**
+     * 首先初始化一个字符数组，用来存放每个16进制字符
+     **/
     private static final char[] hexDigits = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd',
             'e', 'f'};
 
@@ -22,9 +24,9 @@ public class MD5 {
      * @return 输入字符串的MD5值
      */
     public static String md5(String input) {
-        if (input == null)
+        if (input == null) {
             return null;
-
+        }
         try {
             // 拿到一个MD5转换器（如果想要SHA1参数换成”SHA1”）
             MessageDigest messageDigest = MessageDigest.getInstance("MD5");
@@ -47,8 +49,8 @@ public class MD5 {
     /**
      * 获取文件的MD5值
      *
-     * @param file
-     * @return
+     * @param file 需要的文件
+     * @return 返回md5值
      */
     public static String md5(File file) {
         try {
@@ -65,8 +67,6 @@ public class MD5 {
 
             return result;
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -74,33 +74,35 @@ public class MD5 {
         return null;
     }
 
+    /**
+     * 根据输入流返回md5值
+     * @param in 输入流
+     * @return java.lang.String md5字符值
+     **/
     public static String md5(InputStream in) {
 
         try {
             MessageDigest messagedigest = MessageDigest.getInstance("MD5");
 
             byte[] buffer = new byte[1024];
-            int read = 0;
+            int read;
             while ((read = in.read(buffer)) != -1) {
                 messagedigest.update(buffer, 0, read);
             }
-
             in.close();
-
-            String result = byteArrayToHex(messagedigest.digest());
-
-            return result;
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+            return byteArrayToHex(messagedigest.digest());
+        } catch (NoSuchAlgorithmException | IOException e) {
             e.printStackTrace();
         }
 
         return null;
     }
 
+    /**
+     * 将byte字节转化为16进制字符
+     * @param byteArray 要转化的字符
+     * @return java.lang.String 16进制字符
+     **/
     private static String byteArrayToHex(byte[] byteArray) {
         // new一个字符数组，这个就是用来组成结果字符串的（解释一下：一个byte是八位二进制，也就是2位十六进制字符（2的8次方等于16的2次方））
         char[] resultCharArray = new char[byteArray.length * 2];

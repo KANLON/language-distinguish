@@ -70,7 +70,7 @@ public class ShuyoLangDetectorUtil {
     /**
      * 加载解析jar包，加载默认的语言库
      *
-     * @return java.util.List<java.lang.String>
+     * @return 返回默认语言库的字符串集合
      **/
     private static List<String> getProfileStr() {
         List<String> list = new ArrayList<>();

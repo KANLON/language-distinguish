@@ -23,6 +23,9 @@ public class BaiduLanguageUtil {
 
     /**
      * 需要设置百度翻译需要的请求的两个参数：http://api.fanyi.baidu.com/api/trans/product/desktop?req=developer
+     *
+     * @param appID 百度接口要求的appID
+     * @param securityKey 接口要求的安全密钥
      **/
     public BaiduLanguageUtil(String appID, String securityKey) {
         APP_ID = appID;
@@ -33,7 +36,7 @@ public class BaiduLanguageUtil {
      * 根据字符串调用百度翻译功能识别语言类别（每月200万字符免费，超过之后就要收费，无流量限制，识别语言少）
      *
      * @param str 要识别的字符串
-     * @return java.lang.String 返回识别得到的语言的代码，如果识别不了返回null
+     * @return String 返回识别得到的语言的代码，如果识别不了返回null
      **/
     private static String getLanguageFromBaidu(String str) {
         if (StringUtil.isEmptyOrWhiteSpace(APP_ID) || StringUtil.isEmptyOrWhiteSpace(SECURITY_KEY)) {

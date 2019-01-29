@@ -33,6 +33,7 @@ public enum PropUtil {
      * 根据配置中的key获取字符串值
      *
      * @param key 要获取的key
+     * @return key所对应的字符串
      **/
     public String getStringByKey(String key) {
         return prop.getProperty(key);

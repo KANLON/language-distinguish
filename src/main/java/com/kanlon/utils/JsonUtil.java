@@ -20,6 +20,9 @@ import java.util.Map;
  **/
 public class JsonUtil {
 
+    /**
+     * 饿汉式单例
+     **/
     private static JsonUtil INSTANCE = new JsonUtil();
 
     /**
@@ -80,17 +83,17 @@ public class JsonUtil {
     }
 
     /**
+     * 根据json中对象的名称返回其内容的hashmap
      * @param keyType json中对应的对象
-     * @return java.util.HashMap<java.lang.String       ,       java.lang.String>
-     * @description 根据json中对象的名称返回其内容的hashmap
+     * @return 对象
      **/
     public Map<String, Object> getLanguageInfoByKey(JsonKeyType keyType) {
         return jsonObject.getJSONObject(keyType.toString()).toMap();
     }
 
     /**
-     * @return List<String>
-     * @description 根据json中对象的名称返回其内容的list
+     * 根据json中对象的名称返回其内容的list
+     * @return 测试的字符串集合
      **/
     public List<String> getTestStr() {
         List<String> list = new ArrayList<>();
