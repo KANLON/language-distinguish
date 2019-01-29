@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
+import java.util.Date;
+import java.util.List;
 
 /**
  * 主要是根据输入的语言识别出是那个国家的语言(假定以utf-8编码方式输入)
@@ -28,15 +30,15 @@ public class LanguageDistinguish {
      * @param args 输入参数
      **/
     public static void main(String[] args) {
-//        List<String> list = JsonUtil.getInstance().getTestStr();
-//        System.out.println("开始时间：" + new Date());
-//        long count = 0;
-//        for (int i = 0; i < list.size(); i++) {
-//            logger.info("识别的原始字符串：" + list.get(i % list.size()));
-//            System.out.println(i + "次，" + getLanguageByString(list.get(i % list.size()), DetectMode.PRECISION));
-//        }
-//        System.out.println("结束时间：" + new Date() + "\n次数：" + count);
-        System.out.println(LanguageDistinguish.getLanguageByString("เพลงอื่นๆในอัลบั้ม", DetectMode.PRECISION));
+        List<String> list = JsonUtil.getInstance().getTestStr();
+        System.out.println("开始时间：" + new Date());
+        long count = 0;
+        for (int i = 0; i < list.size(); i++) {
+            logger.info("识别的原始字符串：" + list.get(i % list.size()));
+            System.out.println(i + "次，" + getLanguageByString(list.get(i % list.size()), DetectMode.PRECISION));
+        }
+        System.out.println("结束时间：" + new Date() + "\n次数：" + count);
+        //System.out.println(LanguageDistinguish.getLanguageByString("Luxusné Porsche, Sajfa a jazda života Exkluzívny pohľad na cestu za top nabíjačkou v strednej Európe od ZSE. Na predstavenie sme sa presúvali v expresnom Porsche so Sajfom, MartinomzMartina a Zedňom A.K.A. oranžový Ford. Užite si cestu, naše kecy a malú ukážku Porsche a Audi e-tron. Zedňo:https://www.instagram.com/matozednicek/?hl=enMartinzmartina: https://www.instagram.com/martinzmartina/?hl=skSajfa: https://www.instagram.com/sajfa/?hl=skHudba: Atmospherica - Squiid:https://www.youtube.com/watch?v=33xW2djac3IKokab - Got U (Ready or Not):https://www.youtube.com/watch?v=_whGk6HjUAQFall - Cospe:https://www.youtube.com/watch?v=TBK3JZdpTDsVĎAKA ZA ODBER!#draho #rdmgaraz #vlogTento kanál vznikol na základe toho, že občas navštívim zaujímavé miesta, a som rád, že sa takto s nimi môžem podeliť ďalej. Ak by ste o mne chceli vedieť viac, tak som Drahomír Piok a kanál som založil pre pridávanie VLOGOV. Pracujem ako novinár v Startitupe.Sledovať ma určite môžete aj tu:https://www.instagram.com/draho/https://www.facebook.com/DrahomirPiokHN/ sajfa,porsche,martinzmartina,panamera,etron,audi,918 spyder,jaguar,ipace,bmw,draho,draho vlog,drahomír piok,budča,zse", DetectMode.PRECISION));
 
     }
 
@@ -131,7 +133,7 @@ public class LanguageDistinguish {
     public static Boolean isSpecialLanguage(char c) {
         //从区间数组中找到不大于且最接近该unicode数的下标
         int index = findIndexFromUnicodes(JsonUtil.getInstance().getSpecialLanguageUnicode(), c);
-        return index != -1;
+        return index > -1;
     }
 
     /**
