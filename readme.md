@@ -109,7 +109,31 @@ import com.kanlon.language.LanguageDistinguish;
 public class Test {
     public static void main(String[] args) {
         System.out.println(LanguageDistinguish.getLanguageByString("com.cybozu.labs.langdetect.Detector.getProbabilities", DetectMode.PRECISION));
-        System.out.println(LanguageDistinguish.getLanguageByString("尽管每种应用都会有所不同，但是本质上都是相似的，需要比较单独个体的相似性。",DetectMode.PRECISION));
+        System.out.println(LanguageDistinguish.getLanguageByString("尽管每种应用都会有所不同，但是本质上都是相似的，需要比较单独个体的相似性。", DetectMode.PRECISION));
+        System.out.println(LanguageDistinguish.getLanguageByString("com.cybozu.labs.langdetect.Detector.getProbabilities尽管每种应用都会有所不同，但是本质上都是相似的，需要比较单独个体的相似性。", DetectMode.PRECISION));
+        System.out.println(LanguageDistinguish.getLanguageByString("BTS (방탄소년단) 'Save ME' Official MV\n", DetectMode.PRECISION));
+        System.out.println(LanguageDistinguish.getLanguageByString("\"เพลงอื่นๆในอัลบั้ม\n" +
+                "01 Fly : https://www.youtube.com/watch?v=eaIsRux0EUs\n" +
+                "02 Can't (못하겠어) : https://www.youtube.com/watch?v=eduPd3zejwc\n" +
+                "03 See the light (빛이나) : https://www.youtube.com/watch?v=n9O6ZxIiNfo\n" +
+                "04 Fish : https://www.youtube.com/watch?v=q8UdPXzH2qA\n" +
+                "05 Rewind : https://www.youtube.com/watch?v=J9jfoApJous\n" +
+                "06 Beggin on my knees : https://www.youtube.com/watch?v=TOzU28PLjkM\n" +
+                "07 Something good : https://www.youtube.com/watch?v=dtupeRACACc&feature=youtu.be\n" +
+                "\n" +
+                "- - - - - - - - - - - - - - - - - - - - -\n" +
+                "ห้ามรีอัพโหลดและใช้ในเชิงพาณิชย์ [Do not Re-upload & Not for sale]\n" +
+                "- - - - - - - - - - - - - - - - - - - - -\n" +
+                ":: Credit::\n" +
+                "Hangul : music.naver\n" +
+                "Eng trans : KpopViral.com\n" +
+                "Thai lyrics & Trans  : BAEBOOIrene\n" +
+                "- - - - - - - - - - - - - - - - - - - - -\n" +
+                "แปลผิดพลาดประการใดขออภัยด้วยนะคะ\n" +
+                "กดไลค์และคอมเมนต์เป็นกำลังใจให้คนทำซับมากมาย\"\n", DetectMode.PRECISION));
+        System.out.println(LanguageDistinguish.getLanguageByString("Всем доброго дня! Сегодняшнее видео посвящено автомобилям, которые разгоняется до скорости в 300 и больше! Здесь и Porsche GT2, и Lamborghini Urus и Huracan, Audi R8, Mercedes E63 S, а также Bentley Continental GT! Это уже 3 видео по данной теме, так что если вы не видели первые две подборки, то обязательно посмотрите! Приятного просмотра!\n", DetectMode.PRECISION));
+
+
     }
 }
 ```
@@ -117,12 +141,27 @@ public class Test {
 运行结果
 
 ```
-11:08:03,448  INFO LanguageDistinguish:74 - 大于127的字符串：
-11:08:03,448  INFO LanguageDistinguish:75 - 小于127的字符串：com cybozu labs langdetect Detector getProbabilities 
+15:33:25,682  INFO LanguageDistinguish:74 - 大于127的字符串：
+15:33:25,682  INFO LanguageDistinguish:75 - 小于127的字符串：com cybozu labs langdetect Detector getProbabilities 
+15:33:26,182  INFO GoogleTranslateUtil:36 - 使用了谷歌翻译
+15:33:27,104  INFO GoogleTranslateUtil:55 - 所用纳秒时间：371795123，共：375毫秒
 en:1.00
-11:08:04,026  INFO LanguageDistinguish:74 - 大于127的字符串：尽管每种应用都会有所不同，但是本质上都是相似的，需要比较单独个体的相似性。 
-11:08:04,026  INFO LanguageDistinguish:75 - 小于127的字符串：
-zh-cn:1.00
+15:33:27,104  INFO LanguageDistinguish:74 - 大于127的字符串：尽管每种应用都会有所不同 但是本质上都是相似的 需要比较单独个体的相似性 
+15:33:27,104  INFO LanguageDistinguish:75 - 小于127的字符串：
+ko:1.00
+15:33:27,104  INFO LanguageDistinguish:74 - 大于127的字符串：getProbabilities尽管每种应用都会有所不同 但是本质上都是相似的 需要比较单独个体的相似性 
+15:33:27,104  INFO LanguageDistinguish:75 - 小于127的字符串：com cybozu labs langdetect Detector 
+zh-cn:0.60,en:0.40
+15:33:27,104  INFO LanguageDistinguish:74 - 大于127的字符串：방탄소년단 
+15:33:27,104  INFO LanguageDistinguish:75 - 小于127的字符串：BTS Save ME Official MV 
+ko:0.20,en:0.80
+15:33:27,120  INFO LanguageDistinguish:74 - 大于127的字符串：เพลงอื่นๆในอัลบั้ม 못하겠어 빛이나 ห้ามรีอัพโหลดและใช้ในเชิงพาณิชย์ แปลผิดพลาดประการใดขออภัยด้วยนะคะ กดไลค์และคอมเมนต์เป็นกำลังใจให้คนทำซับมากมาย 
+15:33:27,120  INFO LanguageDistinguish:75 - 小于127的字符串： Fly Can t See the light Fish Rewind Beggin on my knees Something good Do not Re upload Not for sale Credit Hangul music naver Eng trans KpopViral com Thai lyrics Trans BAEBOOIrene 
+th:0.43,en:0.57
+15:33:27,120  INFO LanguageDistinguish:74 - 大于127的字符串：Всем доброго дня Сегодняшнее видео посвящено автомобилям которые разгоняется до скорости в и больше Здесь и GTи и а также Это уже видео по данной теме так что если вы не видели первые две подборки то обязательно посмотрите Приятного просмотра 
+15:33:27,120  INFO LanguageDistinguish:75 - 小于127的字符串：Porsche Lamborghini Urus Huracan Audi RMercedes ES Bentley Continental GT 
+ru:0.77,en:0.23
+
 ```
 
 如果不想输出这些info信息和生成log日志文件，需要复制yy-language-distinguish-1.0-SNAPSHOT.jar中的log4j.properties文件 到项目根目录，如果是maven依赖放到resource目录下，然后修改log4j.rootLogger日志级别和log4j.appender.File.File日志文件路径就可以了
