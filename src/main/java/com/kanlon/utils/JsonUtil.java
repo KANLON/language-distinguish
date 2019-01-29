@@ -36,6 +36,10 @@ public class JsonUtil {
      **/
     private List<String> ableJudgeLanguages = new ArrayList<>();
 
+    /**
+     * 特殊unicode的字符集，应该除去的字符符号
+     **/
+    private List<Integer> specialLanguageUnicode = new ArrayList<>();
 
     private JsonUtil() {
         InputStream inputStream = JsonUtil.class.getClassLoader().getResourceAsStream("language-unicode-info.json");
@@ -63,6 +67,16 @@ public class JsonUtil {
         }
         //排序unicodes，因为查找的时候使用的是类二分法
         Collections.sort(ableJudgeUnicodes);
+
+        //设置特殊unicode的字符，即标点符号，图案之类的
+        JSONObject specialJson = jsonObject.getJSONObject(JsonKeyType.SPECIAL_LANGUAGE_UNICODE.toString());
+        for (String key : specialJson.keySet()) {
+            String[] unicodeRange = key.split("-");
+            specialLanguageUnicode.add(Integer.parseInt(unicodeRange[0], 16));
+            specialLanguageUnicode.add(Integer.parseInt(unicodeRange[1], 16));
+        }
+        //排序unicodes，因为查找的时候使用的是类二分法
+        Collections.sort(specialLanguageUnicode);
     }
 
     /**
@@ -98,6 +112,10 @@ public class JsonUtil {
 
     public String[] getAbleJudgeLanguages() {
         return ableJudgeLanguages.toArray(new String[ableJudgeLanguages.size()]);
+    }
+
+    public Integer[] getSpecialLanguageUnicode() {
+        return specialLanguageUnicode.toArray(new Integer[specialLanguageUnicode.size()]);
     }
 
     public static JsonUtil getInstance() {

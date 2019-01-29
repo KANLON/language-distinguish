@@ -10,8 +10,6 @@ import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.util.Date;
-import java.util.List;
 
 /**
  * 主要是根据输入的语言识别出是那个国家的语言(假定以utf-8编码方式输入)
@@ -26,14 +24,16 @@ public class LanguageDistinguish {
 
     //测试
     public static void main(String[] args) {
-        List<String> list = JsonUtil.getInstance().getTestStr();
-        System.out.println("开始时间：" + new Date());
-        long count = 0;
-        for (int i = 0; i < list.size(); i++) {
-            logger.info("识别的原始字符串：" + list.get(i % list.size()));
-            System.out.println(i + "次，" + getLanguageByString(list.get(i % list.size()), DetectMode.PRECISION));
-        }
-        System.out.println("结束时间：" + new Date() + "\n次数：" + count);
+//        List<String> list = JsonUtil.getInstance().getTestStr();
+//        System.out.println("开始时间：" + new Date());
+//        long count = 0;
+//        for (int i = 0; i < list.size(); i++) {
+//            logger.info("识别的原始字符串：" + list.get(i % list.size()));
+//            System.out.println(i + "次，" + getLanguageByString(list.get(i % list.size()), DetectMode.PRECISION));
+//        }
+//        System.out.println("结束时间：" + new Date() + "\n次数：" + count);
+        System.out.println(LanguageDistinguish.getLanguageByString("เพลงอื่นๆในอัลบั้ม", DetectMode.PRECISION));
+
     }
 
     /**
@@ -104,18 +104,14 @@ public class LanguageDistinguish {
         if (StringUtil.isEmptyOrWhiteSpace(noLetterAndNumStr)) {
             return null;
         }
-        //存在其他形式语言
-        String languageStr = getOneLanguageByUnicode(noLetterAndNumStr.charAt(0));
-
-        //如果根据unicode不能直接判断语言的，继续执行开源框架和谷歌翻译进行判断
+        String languageStr;
+        //继续执行开源框架,谷歌翻译进行判断
+        languageStr = ShuyoLangDetectorUtil.detect(noLetterAndNumStr);
         if (StringUtil.isEmptyOrWhiteSpace(languageStr)) {
-            languageStr = ShuyoLangDetectorUtil.detect(noLetterAndNumStr);
-            if (StringUtil.isEmptyOrWhiteSpace(languageStr)) {
-                languageStr = GoogleTranslateUtil.getLanguageFromGoogle(noLetterAndNumStr);
-            }
-            if (!StringUtil.isEmptyOrWhiteSpace(languageStr)) {
-                return languageStr;
-            }
+            languageStr = GoogleTranslateUtil.getLanguageFromGoogle(noLetterAndNumStr);
+        }
+        if (!StringUtil.isEmptyOrWhiteSpace(languageStr)) {
+            return languageStr;
         }
         //如果unicode值符合，直接返回
         return languageStr;
@@ -127,16 +123,19 @@ public class LanguageDistinguish {
      * @param c 要判断的字符
      * @return java.lang.Boolean
      **/
-    public static Boolean isSpecialLanguage(Character c) {
-        return getOneLanguageByUnicode(c) != null;
+    public static Boolean isSpecialLanguage(char c) {
+        //从区间数组中找到不大于且最接近该unicode数的下标
+        int index = findIndexFromUnicodes(JsonUtil.getInstance().getSpecialLanguageUnicode(), c);
+        return index != -1;
     }
 
     /**
-     * 根据某个unicode值判断属于哪个特定的语言，如果找不到符合的，则返回null
+     * 根据某个unicode值判断属于哪个特定的语言，(这个方法暂时没有用了，泰文有两种语言，会导致识别不准，以后都使用开源框架识别)
      *
      * @param unicode 要判断的unicode值
      * @return java.lang.String 不能判断，则返回null
      **/
+    @Deprecated
     private static String getOneLanguageByUnicode(int unicode) {
         final int maxUnicode = 0xFFFF;
         if (unicode < 0 || unicode > maxUnicode) {
