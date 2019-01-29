@@ -14,8 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * txt文件的工具类
  * @author zhangcanlong
- * @description: txt文件的工具类
  * @since 2019/1/23 10:18
  **/
 public class TxtUtil {

@@ -15,8 +15,8 @@ import java.util.jar.JarFile;
 
 
 /**
+ * shuyo语言识别开源框架使用工具类
  * @author zhangcanlong
- * @description shuyo语言识别开源框架使用工具类
  * @since 2019-1-25
  **/
 public class ShuyoLangDetectorUtil {

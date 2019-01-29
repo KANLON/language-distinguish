@@ -8,8 +8,8 @@ import java.io.InputStreamReader;
 import java.util.Properties;
 
 /**
+ * 操作配置资源的工具类
  * @author zhangcanlong
- * @description: 操作配置资源的工具类
  * @since 2019/1/19 18:33
  **/
 public enum PropUtil {

@@ -9,7 +9,7 @@ import java.util.Map;
 
 /**
  * @author zhangcanlong
- * @description: 调用百度翻译API识别语言类别
+ *  调用百度翻译API识别语言类别
  * @since 2019/1/24 15:56
  **/
 public class BaiduLanguageUtil {

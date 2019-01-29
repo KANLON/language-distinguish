@@ -15,8 +15,8 @@ import java.io.IOException;
 import java.util.List;
 
 /**
+ * Optimaize的开源库识别语言的工具类（字符串太短的时候，识别率不了）
  * @author zhangcanlong
- * @description Optimaize的开源库识别语言的工具类（字符串太短的时候，识别率不了）
  * @since 2019-1-24
  **/
 public class OptimaizeLangDetectionUtil {
