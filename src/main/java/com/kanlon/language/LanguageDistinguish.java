@@ -1,6 +1,7 @@
 package com.kanlon.language;
 
 import com.alibaba.excel.util.StringUtils;
+import com.kanlon.entity.DetectMode;
 import com.kanlon.utils.GoogleTranslateUtil;
 import com.kanlon.utils.JsonUtil;
 import com.kanlon.utils.ShuyoLangDetectorUtil;
@@ -20,11 +21,9 @@ import java.util.List;
  * @date 2019年1月16日
  */
 public class LanguageDistinguish {
-    /**
-     * 存储上一次的请求的时间
-     **/
-    private static long lastRequestTime = 0;
+
     private static Logger logger = LoggerFactory.getLogger(LanguageDistinguish.class);
+    private static final String ENGLISH_CODE = "en";
 
     //测试
     public static void main(String[] args) {
@@ -33,7 +32,7 @@ public class LanguageDistinguish {
         long count = 0;
         for (int i = 0; i < list.size(); i++) {
             logger.info("识别的原始字符串：" + list.get(i % list.size()));
-            System.out.println(i + "次，" + getLanguageByString(list.get(i % list.size())));
+            System.out.println(i + "次，" + getLanguageByString(list.get(i % list.size()), DetectMode.PRECISION));
         }
         System.out.println("结束时间：" + new Date() + "\n次数：" + count);
     }
@@ -44,7 +43,7 @@ public class LanguageDistinguish {
      * @param str 要判断的字符串
      * @return java.lang.String 字符串的语言代码,如果不能确定，则返回null
      **/
-    public static String getLanguageByString(String str) {
+    public static String getLanguageByString(String str, DetectMode mode) {
         if (str == null || str.length() <= 0) {
             throw new IllegalArgumentException("字符串不能为空");
         }
@@ -77,8 +76,17 @@ public class LanguageDistinguish {
         logger.info("小于127的字符串：" + letterAndNumBuilder.toString());
 
         String noLetterAndNumLanguage = getBig127UnicodeLanguage(noLetterAndNumBuilder.toString());
+
         //判断纯字母的语言，如英语，法语，西班牙语等
-        String letterLanguage = ShuyoLangDetectorUtil.detect(str);
+        String letterLanguage = ShuyoLangDetectorUtil.detect(letterAndNumBuilder.toString());
+
+        //如果是精确的模式，才再次调用谷歌翻译核对
+        if (mode.equals(DetectMode.PRECISION)) {
+            if (!ENGLISH_CODE.equals(letterLanguage)) {
+                letterLanguage = GoogleTranslateUtil.getLanguageFromGoogle(letterAndNumBuilder.toString());
+            }
+        }
+
         //判断是否只有一种语言
         boolean isOnlyOneLanguage = (noLetterAndNumLanguage == null && letterLanguage == null) || (noLetterAndNumLanguage != null && noLetterAndNumLanguage.equals(letterLanguage));
         if (isOnlyOneLanguage) {
@@ -105,15 +113,7 @@ public class LanguageDistinguish {
         if (StringUtil.isEmptyOrWhiteSpace(languageStr)) {
             languageStr = ShuyoLangDetectorUtil.detect(noLetterAndNumStr);
             if (StringUtil.isEmptyOrWhiteSpace(languageStr)) {
-                try {
-                    long currentTime = System.nanoTime();
-                    long betweenTime = (currentTime - lastRequestTime) / 1000_000;
-                    Thread.sleep(betweenTime > 1000 ? 0 : 1000 - betweenTime);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
                 languageStr = GoogleTranslateUtil.getLanguageFromGoogle(noLetterAndNumStr);
-                lastRequestTime = System.nanoTime();
             }
             if (!StringUtils.isEmpty(languageStr)) {
                 return languageStr;
@@ -136,7 +136,7 @@ public class LanguageDistinguish {
     /**
      * 根据某个unicode值判断属于哪个特定的语言，如果找不到符合的，则返回null
      *
-     * @param unicode         要判断的unicode值
+     * @param unicode 要判断的unicode值
      * @return java.lang.String 不能判断，则返回null
      **/
     private static String getOneLanguageByUnicode(int unicode) {

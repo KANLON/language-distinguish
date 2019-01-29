@@ -22,6 +22,11 @@ public class GoogleTranslateUtil {
     private static Logger logger = LoggerFactory.getLogger(GoogleTranslateUtil.class);
 
     /**
+     * 存储上一次的请求的时间
+     **/
+    private static long lastRequestTime = 0;
+
+    /**
      * 根据字符串调用谷歌翻译功能识别语言类别（有流量限制，需要限制每秒一次，识别语言种类多，大多数都能识别）
      *
      * @param str 要识别的字符串
@@ -40,7 +45,13 @@ public class GoogleTranslateUtil {
             param.append(URLEncoder.encode(str, "UTF-8"));
             long startTime = System.currentTimeMillis();
             long startNanoTime = System.nanoTime();
+            //使谷歌翻译调用速度不超过1秒一次
+            long currentTime = System.nanoTime();
+            long betweenTime = (currentTime - lastRequestTime) / 1000_000;
+            Thread.sleep(betweenTime > 1000 ? 0 : 1000 - betweenTime);
+
             responseStr = HttpRequestUtil.sendGet(url, param.toString());
+            lastRequestTime = System.nanoTime();
             logger.info("所用纳秒时间：" + (System.nanoTime() - startNanoTime) + "，共：" + (System.currentTimeMillis() - startTime) + "毫秒");
         } catch (Exception e) {
             logger.error("调用谷歌翻译功能识别语言类别出现错误", e);

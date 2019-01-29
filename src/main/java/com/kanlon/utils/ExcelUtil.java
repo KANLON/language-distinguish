@@ -5,6 +5,7 @@ import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.metadata.Sheet;
 import com.alibaba.excel.support.ExcelTypeEnum;
 import com.alibaba.excel.util.StringUtils;
+import com.kanlon.entity.DetectMode;
 import com.kanlon.entity.ExcelTestDataModel;
 import com.kanlon.entity.TranslateType;
 import com.kanlon.entity.UnicodeExcelInfo;
@@ -120,7 +121,7 @@ public class ExcelUtil {
                 model.setTitle(title);
                 String allStr = description + title + tags;
                 if (!StringUtils.isEmpty(allStr) && !allStr.matches("\\s+")) {
-                    model.setLanguage(LanguageDistinguish.getLanguageByString(description + title + tags));
+                    model.setLanguage(LanguageDistinguish.getLanguageByString(description + title + tags, DetectMode.PRECISION));
                 }
                 list.add(model);
             } catch (JSONException e) {
