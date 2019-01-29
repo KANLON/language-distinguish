@@ -1,6 +1,5 @@
 package com.kanlon.language;
 
-import com.alibaba.excel.util.StringUtils;
 import com.kanlon.entity.DetectMode;
 import com.kanlon.utils.GoogleTranslateUtil;
 import com.kanlon.utils.JsonUtil;
@@ -74,15 +73,14 @@ public class LanguageDistinguish {
         }
         logger.info("大于127的字符串：" + noLetterAndNumBuilder.toString());
         logger.info("小于127的字符串：" + letterAndNumBuilder.toString());
-
         String noLetterAndNumLanguage = getBig127UnicodeLanguage(noLetterAndNumBuilder.toString());
 
-        //判断纯字母的语言，如英语，法语，西班牙语等
-        String letterLanguage = ShuyoLangDetectorUtil.detect(letterAndNumBuilder.toString());
-
-        //如果是精确的模式，才再次调用谷歌翻译核对
-        if (mode.equals(DetectMode.PRECISION)) {
-            if (!ENGLISH_CODE.equals(letterLanguage)) {
+        String letterLanguage = null;
+        if (!StringUtil.isEmptyOrWhiteSpace(letterAndNumBuilder.toString())) {
+            //判断纯字母的语言，如英语，法语，西班牙语等
+            letterLanguage = ShuyoLangDetectorUtil.detect(letterAndNumBuilder.toString());
+            //如果是精确的模式，才再次调用谷歌翻译核对
+            if (mode.equals(DetectMode.PRECISION) && !ENGLISH_CODE.equals(letterLanguage)) {
                 letterLanguage = GoogleTranslateUtil.getLanguageFromGoogle(letterAndNumBuilder.toString());
             }
         }
@@ -103,7 +101,7 @@ public class LanguageDistinguish {
      * @return java.lang.String 返回判断后的单一语言，这里不支持多语言判断，如果判断不了，返回null
      **/
     private static String getBig127UnicodeLanguage(String noLetterAndNumStr) {
-        if (noLetterAndNumStr == null || StringUtil.isEmptyOrWhiteSpace(noLetterAndNumStr)) {
+        if (StringUtil.isEmptyOrWhiteSpace(noLetterAndNumStr)) {
             return null;
         }
         //存在其他形式语言
@@ -115,7 +113,7 @@ public class LanguageDistinguish {
             if (StringUtil.isEmptyOrWhiteSpace(languageStr)) {
                 languageStr = GoogleTranslateUtil.getLanguageFromGoogle(noLetterAndNumStr);
             }
-            if (!StringUtils.isEmpty(languageStr)) {
+            if (!StringUtil.isEmptyOrWhiteSpace(languageStr)) {
                 return languageStr;
             }
         }

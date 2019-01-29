@@ -8,6 +8,7 @@
     <artifactId>yy-language-distinguish</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+    <!-- -->
     <dependencies>
         <dependency>
             <groupId>com.alibaba</groupId>
