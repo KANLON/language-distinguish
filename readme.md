@@ -136,26 +136,24 @@ public class Test {
 运行结果
 
 ```
-15:33:25,682  INFO LanguageDistinguish:74 - 大于127的字符串：
-15:33:25,682  INFO LanguageDistinguish:75 - 小于127的字符串：com cybozu labs langdetect Detector getProbabilities 
-15:33:26,182  INFO GoogleTranslateUtil:36 - 使用了谷歌翻译
-15:33:27,104  INFO GoogleTranslateUtil:55 - 所用纳秒时间：371795123，共：375毫秒
-en:1.00
-15:33:27,104  INFO LanguageDistinguish:74 - 大于127的字符串：尽管每种应用都会有所不同 但是本质上都是相似的 需要比较单独个体的相似性 
-15:33:27,104  INFO LanguageDistinguish:75 - 小于127的字符串：
-ko:1.00
-15:33:27,104  INFO LanguageDistinguish:74 - 大于127的字符串：getProbabilities尽管每种应用都会有所不同 但是本质上都是相似的 需要比较单独个体的相似性 
-15:33:27,104  INFO LanguageDistinguish:75 - 小于127的字符串：com cybozu labs langdetect Detector 
-zh-cn:0.60,en:0.40
-15:33:27,104  INFO LanguageDistinguish:74 - 大于127的字符串：방탄소년단 
-15:33:27,104  INFO LanguageDistinguish:75 - 小于127的字符串：BTS Save ME Official MV 
-ko:0.20,en:0.80
-15:33:27,120  INFO LanguageDistinguish:74 - 大于127的字符串：เพลงอื่นๆในอัลบั้ม 못하겠어 빛이나 ห้ามรีอัพโหลดและใช้ในเชิงพาณิชย์ แปลผิดพลาดประการใดขออภัยด้วยนะคะ กดไลค์และคอมเมนต์เป็นกำลังใจให้คนทำซับมากมาย 
-15:33:27,120  INFO LanguageDistinguish:75 - 小于127的字符串： Fly Can t See the light Fish Rewind Beggin on my knees Something good Do not Re upload Not for sale Credit Hangul music naver Eng trans KpopViral com Thai lyrics Trans BAEBOOIrene 
-th:0.43,en:0.57
-15:33:27,120  INFO LanguageDistinguish:74 - 大于127的字符串：Всем доброго дня Сегодняшнее видео посвящено автомобилям которые разгоняется до скорости в и больше Здесь и GTи и а также Это уже видео по данной теме так что если вы не видели первые две подборки то обязательно посмотрите Приятного просмотра 
-15:33:27,120  INFO LanguageDistinguish:75 - 小于127的字符串：Porsche Lamborghini Urus Huracan Audi RMercedes ES Bentley Continental GT 
-ru:0.77,en:0.23
+10:04:47,362  INFO LanguageDistinguish:80 - 大于127的字符串：
+10:04:47,364  INFO LanguageDistinguish:81 - 小于127的字符串：com cybozu labs langdetect Detector getProbabilities 
+{"en":1.00}
+10:04:47,736  INFO LanguageDistinguish:80 - 大于127的字符串：尽管每种应用都会有所不同 但是本质上都是相似的 需要比较单独个体的相似性 
+10:04:47,736  INFO LanguageDistinguish:81 - 小于127的字符串：
+{"ko":1.00}
+10:04:47,739  INFO LanguageDistinguish:80 - 大于127的字符串：getProbabilities尽管每种应用都会有所不同 但是本质上都是相似的 需要比较单独个体的相似性 
+10:04:47,739  INFO LanguageDistinguish:81 - 小于127的字符串：com cybozu labs langdetect Detector 
+{"zh-cn":0.60,"en":0.40}
+10:04:47,742  INFO LanguageDistinguish:80 - 大于127的字符串：방탄소년단 
+10:04:47,742  INFO LanguageDistinguish:81 - 小于127的字符串：BTS Save ME Official MV 
+{"ko":0.20,"en":0.80}
+10:04:47,748  INFO LanguageDistinguish:80 - 大于127的字符串：เพลงอื่นๆในอัลบั้ม 못하겠어 빛이나 ห้ามรีอัพโหลดและใช้ในเชิงพาณิชย์ แปลผิดพลาดประการใดขออภัยด้วยนะคะ กดไลค์และคอมเมนต์เป็นกำลังใจให้คนทำซับมากมาย 
+10:04:47,748  INFO LanguageDistinguish:81 - 小于127的字符串： Fly Can t See the light Fish Rewind Beggin on my knees Something good Do not Re upload Not for sale Credit Hangul music naver Eng trans KpopViral com Thai lyrics Trans BAEBOOIrene 
+{"th":0.43,"en":0.57}
+10:04:47,752  INFO LanguageDistinguish:80 - 大于127的字符串：Всем доброго дня Сегодняшнее видео посвящено автомобилям которые разгоняется до скорости в и больше Здесь и GTи и а также Это уже видео по данной теме так что если вы не видели первые две подборки то обязательно посмотрите Приятного просмотра 
+10:04:47,752  INFO LanguageDistinguish:81 - 小于127的字符串：Porsche Lamborghini Urus Huracan Audi RMercedes ES Bentley Continental GT 
+{"ru":0.77,"en":0.23}
 
 ```
 

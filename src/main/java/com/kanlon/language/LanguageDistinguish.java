@@ -94,7 +94,7 @@ public class LanguageDistinguish {
         //判断是否只有一种语言
         boolean isOnlyOneLanguage = (noLetterAndNumLanguage == null && letterLanguage == null) || (noLetterAndNumLanguage != null && noLetterAndNumLanguage.equals(letterLanguage));
         if (isOnlyOneLanguage) {
-            return noLetterAndNumLanguage + ":1.00";
+            return constructLanguageProportion(noLetterAndNumLanguage, noLetterAndNumBuilder.length(), null, 0);
         }
         return constructLanguageProportion(noLetterAndNumLanguage, noLetterAndNumBuilder.length(), letterLanguage, letterAndNumBuilder.length());
     }
@@ -224,22 +224,25 @@ public class LanguageDistinguish {
         BigDecimal proportion1 = new BigDecimal(length1 / sumLength, MathContext.DECIMAL32);
         BigDecimal proportion2 = new BigDecimal(length2 / sumLength, MathContext.DECIMAL32);
         BigDecimal minPrecision = new BigDecimal(0.01, MathContext.DECIMAL32);
+        returnBuilder.append("{\"");
         if (proportion1.compareTo(minPrecision) <= 0 || proportion2.compareTo(minPrecision) <= 0) {
             if (proportion1.compareTo(minPrecision) <= 0) {
                 returnBuilder.append(language2);
             } else {
                 returnBuilder.append(language1);
             }
-            returnBuilder.append(":1.00");
+
+            returnBuilder.append("\":1.00}");
             return returnBuilder.toString();
         }
         returnBuilder.append(language1);
-        returnBuilder.append(":");
+        returnBuilder.append("\":");
         returnBuilder.append(proportion1.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-        returnBuilder.append(",");
+        returnBuilder.append(",\"");
         returnBuilder.append(language2);
-        returnBuilder.append(":");
+        returnBuilder.append("\":");
         returnBuilder.append(proportion2.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+        returnBuilder.append("}");
         return returnBuilder.toString();
     }
 
