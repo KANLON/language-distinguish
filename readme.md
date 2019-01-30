@@ -5,7 +5,7 @@
 本项目主要基于shuyo的开源框架 https://github.com/shuyo/language-detection 和谷歌翻译的语言检测接口完成。由于网上很多开源框架或软件都只能识别一种语言，，并且不能检测出字符串中某些语言的占比和语言支持种类都比较少，而我近来有个需求需要识别包含不同种类的语言和求出它们之间的占比，因此开发出这个功能jar包。<br/>
 
 ### 特点：<br/>
-1. 当前支持同一字符串两种语言的识别，并能求出占比，返回形式：lang1:0.09,lang2:0.91
+1. 当前支持同一字符串两种语言的识别，并能求出占比，返回形式：`{"lang1":0.09,"lang2":0.91}`,如果检测不了，则返回`{}`
 
 2. 支持语言种类多，具体支持的语言种类见下表
 
@@ -127,7 +127,10 @@ public class Test {
                 "แปลผิดพลาดประการใดขออภัยด้วยนะคะ\n" +
                 "กดไลค์และคอมเมนต์เป็นกำลังใจให้คนทำซับมากมาย\"\n", DetectMode.PRECISION));
         System.out.println(LanguageDistinguish.getLanguageByString("Всем доброго дня! Сегодняшнее видео посвящено автомобилям, которые разгоняется до скорости в 300 и больше! Здесь и Porsche GT2, и Lamborghini Urus и Huracan, Audi R8, Mercedes E63 S, а также Bentley Continental GT! Это уже 3 видео по данной теме, так что если вы не видели первые две подборки, то обязательно посмотрите! Приятного просмотра!\n", DetectMode.PRECISION));
-
+        //如果检测的字符串不含有特征字符，即识别不了，会返回"{}"
+        System.out.println(LanguageDistinguish.getLanguageByString("1--", DetectMode.PRECISION));
+        //如果检测的字符串为空，或空字符串，则会抛出异常，因此需要自己判空
+        System.out.println(LanguageDistinguish.getLanguageByString("", DetectMode.PRECISION));
 
     }
 }
@@ -154,7 +157,13 @@ public class Test {
 10:04:47,752  INFO LanguageDistinguish:80 - 大于127的字符串：Всем доброго дня Сегодняшнее видео посвящено автомобилям которые разгоняется до скорости в и больше Здесь и GTи и а также Это уже видео по данной теме так что если вы не видели первые две подборки то обязательно посмотрите Приятного просмотра 
 10:04:47,752  INFO LanguageDistinguish:81 - 小于127的字符串：Porsche Lamborghini Urus Huracan Audi RMercedes ES Bentley Continental GT 
 {"ru":0.77,"en":0.23}
-
+10:20:19,563  INFO LanguageDistinguish:80 - 大于127的字符串：
+10:20:19,563  INFO LanguageDistinguish:81 - 小于127的字符串： 
+{}
+Exception in thread "main" java.lang.IllegalArgumentException: 字符串不能为空
+	at com.kanlon.language.LanguageDistinguish.getLanguageByString(LanguageDistinguish.java:53)
+	at com.kanlon.cfile.controller.Test.main(Test.java:40)
+	
 ```
 
 如果不想输出这些info信息和生成log日志文件，需要复制yy-language-distinguish-1.0-SNAPSHOT.jar中的log4j.properties文件 到项目根目录，如果是maven依赖放到resource目录下，然后修改log4j.rootLogger日志级别和log4j.appender.File.File日志文件路径就可以了

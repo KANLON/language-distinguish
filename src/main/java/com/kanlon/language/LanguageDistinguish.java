@@ -217,7 +217,7 @@ public class LanguageDistinguish {
      **/
     private static String constructLanguageProportion(String language1, int length1, String language2, int length2) {
         if (length1 + length2 <= 0) {
-            throw new IllegalArgumentException("总长度不能小于等于0");
+            return "{}";
         }
         StringBuilder returnBuilder = new StringBuilder();
         double sumLength = length1 + length2;
