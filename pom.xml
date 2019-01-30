@@ -6,7 +6,7 @@
 
     <groupId>com.github.kanlon</groupId>
     <artifactId>language-distinguish</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -45,19 +45,12 @@
             <artifactId>language-detector</artifactId>
             <version>0.6</version>
         </dependency>
-        <!-- 引入本地开源的shuyo语言识别库-->
+        <!-- 引入开源的shuyo语言识别库-->
         <dependency>
-            <groupId>org.shuyo</groupId>
-            <artifactId>langdatect-core</artifactId>
-            <version>1.0</version>
+            <groupId>com.cybozu.labs</groupId>
+            <artifactId>langdetect</artifactId>
+            <version>1.1-20120112</version>
         </dependency>
-        <dependency>
-            <groupId>org.shuyo</groupId>
-            <artifactId>langdatect-jsonic</artifactId>
-            <version>1.0</version>
-        </dependency>
-
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -112,48 +105,6 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
-
-            <!-- 导入包
-                <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-install-plugin</artifactId>
-                <version>2.5.2</version>
-                <executions>
-                    <execution>
-                        <id>install-external</id>
-                        <phase>clean</phase>
-                        <configuration>
-                            <file>${basedir}/lib/jsonic-1.2.0.jar</file>
-                            <repositoryLayout>default</repositoryLayout>
-                            <groupId>org.shuyo</groupId>
-                            <artifactId>langdatect-jsonic</artifactId>
-                            <version>1.0</version>
-                            <packaging>jar</packaging>
-                            <generatePom>true</generatePom>
-                        </configuration>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                    </execution>
-
-                    <execution>
-                        <id>install-external-2</id>
-                        <phase>clean</phase>
-                        <configuration>
-                            <file>${basedir}/lib/langdetect.jar</file>
-                            <repositoryLayout>default</repositoryLayout>
-                            <groupId>org.shuyo</groupId>
-                            <artifactId>langdatect-core</artifactId>
-                            <version>1.0</version>
-                            <packaging>jar</packaging>
-                            <generatePom>true</generatePom>
-                        </configuration>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>-->
         </plugins>
     </build>
 

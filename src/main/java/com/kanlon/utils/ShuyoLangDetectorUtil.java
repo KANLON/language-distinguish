@@ -59,7 +59,7 @@ public class ShuyoLangDetectorUtil {
             detector.append(originalStr);
             langUsed = detector.detect();
         } catch (LangDetectException e) {
-            logger.error("识别：“" + originalStr + "”失败。", e);
+            logger.warn("识别：“" + originalStr + "”失败。", e);
             for (int i = 0; i < originalStr.length(); i++) {
                 System.out.print(Integer.toHexString(originalStr.charAt(i)) + " ");
             }
