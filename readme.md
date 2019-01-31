@@ -24,7 +24,7 @@
 建议使用maven来构建项目<br/>
 
 
-1. 下载项目目录下的lib包中的jar包yy-language-distinguish-1.0-SNAPSHOT.jar（自己封装的jar包），将它们加到需要用到的项目中的jar包中。
+1. 下载项目目录下的lib包中的jar包language-distinguish-1.0.jar（自己封装的jar包），将它们加到需要用到的项目中的jar包中。
 
 2. 添加以下maven 依赖，如果不是使用maven构建，则需要自己依次下载以下每项maven依赖。<br/>
 
@@ -32,28 +32,16 @@
 
 maven的pom.xml依赖
 ```
-        <!-- 开源的语言识别的库-->
-        <dependency>
-            <groupId>com.optimaize.languagedetector</groupId>
-            <artifactId>language-detector</artifactId>
-            <version>0.6</version>
-        </dependency>
         <!-- 引入开源的shuyo语言识别库-->
         <dependency>
             <groupId>com.cybozu.labs</groupId>
             <artifactId>langdetect</artifactId>
             <version>1.1-20120112</version>
         </dependency>
-        <!-- lombok和junit -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.16.10</version>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13-beta-1</version>
         </dependency>
         <!-- 读取js文件 -->
         <dependency>
