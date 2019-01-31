@@ -39,12 +39,6 @@
 
     <dependencies>
 
-        <!-- 开源的语言识别的库-->
-        <dependency>
-            <groupId>com.optimaize.languagedetector</groupId>
-            <artifactId>language-detector</artifactId>
-            <version>0.6</version>
-        </dependency>
         <!-- 引入开源的shuyo语言识别库-->
         <dependency>
             <groupId>com.cybozu.labs</groupId>
@@ -55,11 +49,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.16.10</version>
-        </dependency>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.13-beta-1</version>
         </dependency>
         <!-- 读取js文件 -->
         <dependency>
