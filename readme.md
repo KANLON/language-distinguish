@@ -23,14 +23,31 @@
 #  使用说明
 建议使用maven来构建项目<br/>
 
+## 安装依赖或添加jar包
+
+### 方式一（推荐）
+
+直接使用以下maven依赖<br/>
+
+```
+
+		<dependency>
+			<groupId>com.github.kanlon</groupId>
+			<artifactId>language-distinguish</artifactId>
+			<version>1.1</version>
+		</dependency>
+
+```
+
+
+###  方式二
 
 1. 下载项目目录下的lib包中的jar包language-distinguish-1.0.jar（自己封装的jar包），将它们加到需要用到的项目中的jar包中。
 
 2. 添加以下maven 依赖，如果不是使用maven构建，则需要自己依次下载以下每项maven依赖。<br/>
 
-3. 如果需要自己构造语言库，需要在项目根目录下建一个lang文件夹，并将语言库放到该目录下，否则会默认使用自带的lang语言库。语言库制作参考： https://www.jianshu.com/p/9611a048f970 中的”如何生成Language Profile“ <br/>
+maven的pom.xml依赖<br/>
 
-maven的pom.xml依赖
 ```
         <!-- 引入开源的shuyo语言识别库-->
         <dependency>
@@ -75,7 +92,11 @@ maven的pom.xml依赖
 
 ```
 
-4. 然后就可以调用`LanguageDistinguish`类中的静态方法`getLanguageByString(String str,DetectMode mode)`来使用了，会返回语言名称的简写代码，str表示要检测的语言，DetectMode表示识别模式`DetectMode.PRECISION`表示精确的，不过速度慢，`DetectMode.IMPRECISION`表示不太精确的，速度快。
+## 自定义配置与使用
+
+1. 如果需要自己构造语言库，需要在项目根目录下建一个lang文件夹，并将语言库放到该目录下，否则会默认使用自带的lang语言库。语言库制作参考： https://www.jianshu.com/p/9611a048f970 中的”如何生成Language Profile“ <br/>
+
+2. 然后就可以调用`LanguageDistinguish`类中的静态方法`getLanguageByString(String str,DetectMode mode)`来使用了，会返回语言名称的简写代码，str表示要检测的语言，DetectMode表示识别模式`DetectMode.PRECISION`表示精确的，不过速度慢，`DetectMode.IMPRECISION`表示不太精确的，速度快。
 
 
 # 代码示例
