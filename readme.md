@@ -31,66 +31,18 @@
 
 ```
 
-		<dependency>
-			<groupId>com.github.kanlon</groupId>
-			<artifactId>language-distinguish</artifactId>
-			<version>1.1</version>
-		</dependency>
+<dependency>
+    <groupId>com.github.kanlon</groupId>
+    <artifactId>language-distinguish</artifactId>
+    <version>1.1</version>
+</dependency>
 
 ```
-
 
 ###  方式二
 
-1. 下载项目目录下的lib包中的jar包language-distinguish-1.0.jar（自己封装的jar包），将它们加到需要用到的项目中的jar包中。
+下载项目目录下的lib包中的所有jar包，将它们加到需要用到的项目中的jar包中。然后就可以创建以下测试类进行测试了。<br/>
 
-2. 添加以下maven 依赖，如果不是使用maven构建，则需要自己依次下载以下每项maven依赖。<br/>
-
-maven的pom.xml依赖<br/>
-
-```
-        <!-- 引入开源的shuyo语言识别库-->
-        <dependency>
-            <groupId>com.cybozu.labs</groupId>
-            <artifactId>langdetect</artifactId>
-            <version>1.1-20120112</version>
-        </dependency>
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.16.10</version>
-        </dependency>
-        <!-- 读取js文件 -->
-        <dependency>
-            <groupId>com.google.code.scriptengines</groupId>
-            <artifactId>scriptengines-javascript</artifactId>
-            <version>1.1.1</version>
-        </dependency>
-        <!-- json解析包-->
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20180813</version>
-        </dependency>
-        <!--日志 start-->
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.8.0-beta2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>1.8.0-beta2</version>
-        </dependency>
-        <!--日志end-->
-
-```
 
 ## 自定义配置与使用
 
