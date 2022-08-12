@@ -10,10 +10,6 @@ import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * 主要是根据输入的语言识别出是那个国家的语言(假定以utf-8编码方式输入)
@@ -26,28 +22,11 @@ public class LanguageDistinguish {
     private static Logger logger = LoggerFactory.getLogger(LanguageDistinguish.class);
     private static final String ENGLISH_CODE = "en";
 
-    /**
-     * 测试
-     *
-     * @param args 输入参数
-     **/
-    public static void main(String[] args) {
-        List<String> list = JsonUtil.getInstance().getTestStr();
-        System.out.println("开始时间：" + new Date());
-        for (int i = 0; i < list.size(); i++) {
-            logger.info("识别的原始字符串：" + list.get(i % list.size()));
-            System.out.println(i + "次，" + getLanguageByString(list.get(i % list.size()), DetectMode.PRECISION));
-        }
-        System.out.println("结束时间：" + new Date());
-        Map<String, String> map = new HashMap<>();
-        //System.out.println(LanguageDistinguish.getLanguageByString("Luxusné Porsche, Sajfa a jazda života Exkluzívny pohľad na cestu za top nabíjačkou v strednej Európe od ZSE. Na predstavenie sme sa presúvali v expresnom Porsche so Sajfom, MartinomzMartina a Zedňom A.K.A. oranžový Ford. Užite si cestu, naše kecy a malú ukážku Porsche a Audi e-tron. Zedňo:https://www.instagram.com/matozednicek/?hl=enMartinzmartina: https://www.instagram.com/martinzmartina/?hl=skSajfa: https://www.instagram.com/sajfa/?hl=skHudba: Atmospherica - Squiid:https://www.youtube.com/watch?v=33xW2djac3IKokab - Got U (Ready or Not):https://www.youtube.com/watch?v=_whGk6HjUAQFall - Cospe:https://www.youtube.com/watch?v=TBK3JZdpTDsVĎAKA ZA ODBER!#draho #rdmgaraz #vlogTento kanál vznikol na základe toho, že občas navštívim zaujímavé miesta, a som rád, že sa takto s nimi môžem podeliť ďalej. Ak by ste o mne chceli vedieť viac, tak som Drahomír Piok a kanál som založil pre pridávanie VLOGOV. Pracujem ako novinár v Startitupe.Sledovať ma určite môžete aj tu:https://www.instagram.com/draho/https://www.facebook.com/DrahomirPiokHN/ sajfa,porsche,martinzmartina,panamera,etron,audi,918 spyder,jaguar,ipace,bmw,draho,draho vlog,drahomír piok,budča,zse", DetectMode.PRECISION));
-
-    }
 
     /**
      * 根据字符串得到该字符串的语言代码
      *
-     * @param str 要判断的字符串
+     * @param str  要判断的字符串
      * @param mode 判断模式，精确还是模糊
      * @return java.lang.String 字符串的语言代码,如果不能确定，则返回null
      **/
@@ -80,8 +59,6 @@ public class LanguageDistinguish {
                 letterAndNumBuilder.append(" ");
             }
         }
-        logger.info("大于127的字符串：" + noLetterAndNumBuilder.toString());
-        logger.info("小于127的字符串：" + letterAndNumBuilder.toString());
         String noLetterAndNumLanguage = getBig127UnicodeLanguage(noLetterAndNumBuilder.toString());
 
         String letterLanguage = null;
@@ -163,8 +140,9 @@ public class LanguageDistinguish {
 
     /**
      * 从区间数组（有序）中找到不大于且最接近该unicode数的下标
+     *
      * @param unicodesRange 要查找的unicode范围
-     * @param unicode 要查找的unicode值
+     * @param unicode       要查找的unicode值
      * @return int 返回下标值,找不到则返回-1
      **/
     private static int findIndexFromUnicodes(Integer[] unicodesRange, int unicode) {

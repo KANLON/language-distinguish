@@ -6,7 +6,7 @@
 
     <groupId>com.github.kanlon</groupId>
     <artifactId>language-distinguish</artifactId>
-    <version>1.1</version>
+    <version>1.1.1</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -38,7 +38,6 @@
 
 
     <dependencies>
-
         <!-- 引入开源的shuyo语言识别库-->
         <dependency>
             <groupId>com.cybozu.labs</groupId>
@@ -64,9 +63,9 @@
         </dependency>
         <!--日志 start-->
         <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.18.0</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -79,6 +78,12 @@
             <version>1.8.0-beta2</version>
         </dependency>
         <!--日志end-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
 
@@ -151,6 +156,9 @@
                                 </goals>
                             </execution>
                         </executions>
+                        <configuration>
+                            <skip>true</skip>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>

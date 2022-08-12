@@ -34,7 +34,7 @@
 <dependency>
     <groupId>com.github.kanlon</groupId>
     <artifactId>language-distinguish</artifactId>
-    <version>1.1</version>
+    <version>1.1.1</version>
 </dependency>
 
 ```
@@ -53,46 +53,43 @@
 
 # 代码示例
 
-```
-import com.kanlon.entity.DetectMode;
-import com.kanlon.language.LanguageDistinguish;
-
+```java
 /**
+ * 测试语言识别
+ *
  * @author zhangcanlong
- * @description:
  * @since 2019/1/28 11:13
- **/
-public class Test {
-    public static void main(String[] args) {
-        System.out.println(LanguageDistinguish.getLanguageByString("com.cybozu.labs.langdetect.Detector.getProbabilities", DetectMode.PRECISION));
-        System.out.println(LanguageDistinguish.getLanguageByString("尽管每种应用都会有所不同，但是本质上都是相似的，需要比较单独个体的相似性。", DetectMode.PRECISION));
-        System.out.println(LanguageDistinguish.getLanguageByString("com.cybozu.labs.langdetect.Detector.getProbabilities尽管每种应用都会有所不同，但是本质上都是相似的，需要比较单独个体的相似性。", DetectMode.PRECISION));
-        System.out.println(LanguageDistinguish.getLanguageByString("BTS (방탄소년단) 'Save ME' Official MV\n", DetectMode.PRECISION));
-        System.out.println(LanguageDistinguish.getLanguageByString("\"เพลงอื่นๆในอัลบั้ม\n" +
-                "01 Fly : https://www.youtube.com/watch?v=eaIsRux0EUs\n" +
-                "02 Can't (못하겠어) : https://www.youtube.com/watch?v=eduPd3zejwc\n" +
-                "03 See the light (빛이나) : https://www.youtube.com/watch?v=n9O6ZxIiNfo\n" +
-                "04 Fish : https://www.youtube.com/watch?v=q8UdPXzH2qA\n" +
-                "05 Rewind : https://www.youtube.com/watch?v=J9jfoApJous\n" +
-                "06 Beggin on my knees : https://www.youtube.com/watch?v=TOzU28PLjkM\n" +
-                "07 Something good : https://www.youtube.com/watch?v=dtupeRACACc&feature=youtu.be\n" +
-                "\n" +
-                "- - - - - - - - - - - - - - - - - - - - -\n" +
-                "ห้ามรีอัพโหลดและใช้ในเชิงพาณิชย์ [Do not Re-upload & Not for sale]\n" +
-                "- - - - - - - - - - - - - - - - - - - - -\n" +
-                ":: Credit::\n" +
-                "Hangul : music.naver\n" +
-                "Eng trans : KpopViral.com\n" +
-                "Thai lyrics & Trans  : BAEBOOIrene\n" +
-                "- - - - - - - - - - - - - - - - - - - - -\n" +
-                "แปลผิดพลาดประการใดขออภัยด้วยนะคะ\n" +
-                "กดไลค์และคอมเมนต์เป็นกำลังใจให้คนทำซับมากมาย\"\n", DetectMode.PRECISION));
-        System.out.println(LanguageDistinguish.getLanguageByString("Всем доброго дня! Сегодняшнее видео посвящено автомобилям, которые разгоняется до скорости в 300 и больше! Здесь и Porsche GT2, и Lamborghini Urus и Huracan, Audi R8, Mercedes E63 S, а также Bentley Continental GT! Это уже 3 видео по данной теме, так что если вы не видели первые две подборки, то обязательно посмотрите! Приятного просмотра!\n", DetectMode.PRECISION));
-        //如果检测的字符串不含有特征字符，即识别不了，会返回"{}"
-        System.out.println(LanguageDistinguish.getLanguageByString("1--", DetectMode.PRECISION));
-        //如果检测的字符串为空，或空字符串，则会抛出异常，因此需要自己判空
-        System.out.println(LanguageDistinguish.getLanguageByString("", DetectMode.PRECISION));
+ */
+@Slf4j
+public class LanguageDistinguishTest {
 
+    /**
+     * 测试识别
+     */
+    @Test
+    public void testDistinguish() {
+        String lang1 = "com.cybozu.labs.langdetect.Detector.getProbabilities";
+        String lang2 = "尽管每种应用都会有所不同，但是本质上都是相似的，需要比较单独个体的相似性。";
+        String lang3 = "com.cybozu.labs.langdetect.Detector.getProbabilities尽管每种应用都会有所不同，但是本质上都是相似的，需要比较单独个体的相似性。";
+        String lang4 = "BTS (방탄소년단) 'Save ME' Official MV\n";
+        String lang5 = "\"เพลงอื่นๆในอัลบั้ม\n" + "01 Fly : https://www.youtube.com/watch?v=eaIsRux0EUs\n" + "02 Can't (못하겠어) : https://www.youtube.com/watch?v=eduPd3zejwc\n" + "03 See the light (빛이나) : https://www.youtube.com/watch?v=n9O6ZxIiNfo\n" + "04 Fish : https://www.youtube.com/watch?v=q8UdPXzH2qA\n" + "05 Rewind : https://www.youtube.com/watch?v=J9jfoApJous\n" + "06 Beggin on my knees : https://www.youtube.com/watch?v=TOzU28PLjkM\n" + "07 Something good : https://www.youtube.com/watch?v=dtupeRACACc&feature=youtu.be\n" + "\n" + "- - - - - - - - - - - - - - - - - - - - -\n" + "ห้ามรีอัพโหลดและใช้ในเชิงพาณิชย์ [Do not Re-upload & Not for sale]\n" + "- - - - - - - - - - - - - - - - - - - - -\n" + ":: Credit::\n" + "Hangul : music.naver\n" + "Eng trans : KpopViral.com\n" + "Thai lyrics & Trans  : BAEBOOIrene\n" + "- - - - - - - - - - - - - - - - - - - - -\n" + "แปลผิดพลาดประการใดขออภัยด้วยนะคะ\n" + "กดไลค์และคอมเมนต์เป็นกำลังใจให้คนทำซับมากมาย\"\n";
+        String lang6 = "Всем доброго дня! Сегодняшнее видео посвящено автомобилям, которые разгоняется до скорости в 300 и больше! Здесь и Porsche GT2, и Lamborghini Urus и Huracan, Audi R8, Mercedes E63 S, а также Bentley Continental GT! Это уже 3 видео по данной теме, так что если вы не видели первые две подборки, то обязательно посмотрите! Приятного просмотра!\n";
+        String lang7 = "1--";
+        String lang8 = "";
+        log.info("识别1的文本为：{},结果为：{}", lang1, LanguageDistinguish.getLanguageByString(lang1, DetectMode.PRECISION));
+        log.info("识别2的文本为：{},结果为：{}", lang2, LanguageDistinguish.getLanguageByString(lang2, DetectMode.PRECISION));
+        log.info("识别3的文本为：{},结果为：{}", lang3, LanguageDistinguish.getLanguageByString(lang3, DetectMode.PRECISION));
+        log.info("识别4的文本为：{},结果为：{}", lang4, LanguageDistinguish.getLanguageByString(lang4, DetectMode.PRECISION));
+        log.info("识别5的文本为：{},结果为：{}", lang5, LanguageDistinguish.getLanguageByString(lang5, DetectMode.PRECISION));
+        log.info("识别6的文本为：{},结果为：{}", lang6, LanguageDistinguish.getLanguageByString(lang6, DetectMode.PRECISION));
+        //如果检测的字符串不含有特征字符，即识别不了，会返回"{}"
+        log.info("识别7的文本为：{},结果为：{}", lang7, LanguageDistinguish.getLanguageByString(lang7, DetectMode.PRECISION));
+        //如果检测的字符串为空，或空字符串，则会抛出异常，因此需要自己判空
+        try {
+            log.info("识别8的文本为：{},结果为：{}", lang8, LanguageDistinguish.getLanguageByString(lang8, DetectMode.PRECISION));
+        } catch (Exception e) {
+            log.error("这里会抛出空报错！", e);
+        }
     }
 }
 ```
@@ -100,34 +97,38 @@ public class Test {
 运行结果
 
 ```
-10:04:47,362  INFO LanguageDistinguish:80 - 大于127的字符串：
-10:04:47,364  INFO LanguageDistinguish:81 - 小于127的字符串：com cybozu labs langdetect Detector getProbabilities 
-{"en":1.00}
-10:04:47,736  INFO LanguageDistinguish:80 - 大于127的字符串：尽管每种应用都会有所不同 但是本质上都是相似的 需要比较单独个体的相似性 
-10:04:47,736  INFO LanguageDistinguish:81 - 小于127的字符串：
-{"ko":1.00}
-10:04:47,739  INFO LanguageDistinguish:80 - 大于127的字符串：getProbabilities尽管每种应用都会有所不同 但是本质上都是相似的 需要比较单独个体的相似性 
-10:04:47,739  INFO LanguageDistinguish:81 - 小于127的字符串：com cybozu labs langdetect Detector 
-{"zh-cn":0.60,"en":0.40}
-10:04:47,742  INFO LanguageDistinguish:80 - 大于127的字符串：방탄소년단 
-10:04:47,742  INFO LanguageDistinguish:81 - 小于127的字符串：BTS Save ME Official MV 
-{"ko":0.20,"en":0.80}
-10:04:47,748  INFO LanguageDistinguish:80 - 大于127的字符串：เพลงอื่นๆในอัลบั้ม 못하겠어 빛이나 ห้ามรีอัพโหลดและใช้ในเชิงพาณิชย์ แปลผิดพลาดประการใดขออภัยด้วยนะคะ กดไลค์และคอมเมนต์เป็นกำลังใจให้คนทำซับมากมาย 
-10:04:47,748  INFO LanguageDistinguish:81 - 小于127的字符串： Fly Can t See the light Fish Rewind Beggin on my knees Something good Do not Re upload Not for sale Credit Hangul music naver Eng trans KpopViral com Thai lyrics Trans BAEBOOIrene 
-{"th":0.43,"en":0.57}
-10:04:47,752  INFO LanguageDistinguish:80 - 大于127的字符串：Всем доброго дня Сегодняшнее видео посвящено автомобилям которые разгоняется до скорости в и больше Здесь и GTи и а также Это уже видео по данной теме так что если вы не видели первые две подборки то обязательно посмотрите Приятного просмотра 
-10:04:47,752  INFO LanguageDistinguish:81 - 小于127的字符串：Porsche Lamborghini Urus Huracan Audi RMercedes ES Bentley Continental GT 
-{"ru":0.77,"en":0.23}
-10:20:19,563  INFO LanguageDistinguish:80 - 大于127的字符串：
-10:20:19,563  INFO LanguageDistinguish:81 - 小于127的字符串： 
-{}
-Exception in thread "main" java.lang.IllegalArgumentException: 字符串不能为空
-	at com.kanlon.language.LanguageDistinguish.getLanguageByString(LanguageDistinguish.java:53)
-	at com.kanlon.cfile.controller.Test.main(Test.java:40)
-	
-```
+21:30:15,282  INFO LanguageDistinguishTest:30 - 识别1的文本为：com.cybozu.labs.langdetect.Detector.getProbabilities,结果为：{"en":1.00}
+21:30:15,287  INFO LanguageDistinguishTest:31 - 识别2的文本为：尽管每种应用都会有所不同，但是本质上都是相似的，需要比较单独个体的相似性。,结果为：{"zh-cn":1.00}
+21:30:15,291  INFO LanguageDistinguishTest:32 - 识别3的文本为：com.cybozu.labs.langdetect.Detector.getProbabilities尽管每种应用都会有所不同，但是本质上都是相似的，需要比较单独个体的相似性。,结果为：{"zh-cn":0.60,"en":0.40}
+21:30:15,294  INFO LanguageDistinguishTest:33 - 识别4的文本为：BTS (방탄소년단) 'Save ME' Official MV
+,结果为：{"ko":0.20,"en":0.80}
+21:30:15,298  INFO LanguageDistinguishTest:34 - 识别5的文本为："เพลงอื่นๆในอัลบั้ม
+01 Fly : https://www.youtube.com/watch?v=eaIsRux0EUs
+02 Can't (못하겠어) : https://www.youtube.com/watch?v=eduPd3zejwc
+03 See the light (빛이나) : https://www.youtube.com/watch?v=n9O6ZxIiNfo
+04 Fish : https://www.youtube.com/watch?v=q8UdPXzH2qA
+05 Rewind : https://www.youtube.com/watch?v=J9jfoApJous
+06 Beggin on my knees : https://www.youtube.com/watch?v=TOzU28PLjkM
+07 Something good : https://www.youtube.com/watch?v=dtupeRACACc&feature=youtu.be
 
-如果不想输出这些info信息和生成log日志文件，需要复制yy-language-distinguish-1.0-SNAPSHOT.jar中的log4j.properties文件 到项目根目录，如果是maven依赖放到resource目录下，然后修改log4j.rootLogger日志级别和log4j.appender.File.File日志文件路径就可以了
+- - - - - - - - - - - - - - - - - - - - -
+ห้ามรีอัพโหลดและใช้ในเชิงพาณิชย์ [Do not Re-upload & Not for sale]
+- - - - - - - - - - - - - - - - - - - - -
+:: Credit::
+Hangul : music.naver
+Eng trans : KpopViral.com
+Thai lyrics & Trans  : BAEBOOIrene
+- - - - - - - - - - - - - - - - - - - - -
+แปลผิดพลาดประการใดขออภัยด้วยนะคะ
+กดไลค์และคอมเมนต์เป็นกำลังใจให้คนทำซับมากมาย"
+,结果为：{"th":0.43,"en":0.57}
+21:30:15,301  INFO LanguageDistinguishTest:35 - 识别6的文本为：Всем доброго дня! Сегодняшнее видео посвящено автомобилям, которые разгоняется до скорости в 300 и больше! Здесь и Porsche GT2, и Lamborghini Urus и Huracan, Audi R8, Mercedes E63 S, а также Bentley Continental GT! Это уже 3 видео по данной теме, так что если вы не видели первые две подборки, то обязательно посмотрите! Приятного просмотра!
+,结果为：{"ru":0.77,"en":0.23}
+21:30:15,302  INFO LanguageDistinguishTest:37 - 识别7的文本为：1--,结果为：{}
+21:30:15,302 ERROR LanguageDistinguishTest:42 - 这里会抛出空报错！
+java.lang.IllegalArgumentException: 字符串不能为空
+	at com.kanlon.language.LanguageDistinguish.getLanguageByString(LanguageDistinguish.java:35)
+```
 
 
 # 项目功能搭建思路
