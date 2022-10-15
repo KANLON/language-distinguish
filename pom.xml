@@ -26,14 +26,14 @@
     </licenses>
     <developers>
         <developer>
-            <name>selfly</name>
-            <email>selfly@foxmail.com</email>
+            <name>kanlon</name>
+            <email>Canlong2015@126.com</email>
         </developer>
     </developers>
     <scm>
-        <connection>scm:git:git@github.com:selfly/dexcoder-assistant.git</connection>
-        <developerConnection>scm:git:git@github.com:selfly/dexcoder-assistant.git</developerConnection>
-        <url>git@github.com:selfly/dexcoder-assistant.git</url>
+        <connection>scm:git:git@github.com:kanlon/language-distinguish.git</connection>
+        <developerConnection>scm:git:git@github.com:kanlon/language-distinguish.git</developerConnection>
+        <url>git@github.com:kanlon/language-distinguish.git</url>
     </scm>
 
 
@@ -143,7 +143,7 @@
                             </execution>
                         </executions>
                     </plugin>
-                    <!-- GPG -->
+                    <!-- GPG 上传到中心仓库需要加 gpg 校验 参考： https://blog.csdn.net/qq_41973594/article/details/119791466 -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
@@ -157,7 +157,7 @@
                             </execution>
                         </executions>
                         <configuration>
-                            <skip>true</skip>
+                            <skip>false</skip>
                         </configuration>
                     </plugin>
                 </plugins>
